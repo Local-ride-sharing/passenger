@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>161840280870-v997ides6ulvh649lrrdetm31fhe21th.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.161840280870-v997ides6ulvh649lrrdetm31fhe21th</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>161840280870-44iubsbrvei0dclodn1sklnoq6i4q2th.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCC-HITCNV7WvLvxdhxxzAFm9a9hHTJ0yQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>161840280870</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.tmotobd.passenger</string>
+	<key>PROJECT_ID</key>
+	<string>t-moto-data-server</string>
+	<key>STORAGE_BUCKET</key>
+	<string>t-moto-data-server.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:161840280870:ios:5c19f9bd44813993243de7</string>
+</dict>
+</plist>

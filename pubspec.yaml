@@ -1,0 +1,63 @@
+name: tmoto_passenger
+description: Tmoto-passenger
+version: 0.0.32+37
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cloud_firestore: ^3.1.10
+  firebase_core: ^1.13.1
+  url_launcher:
+  firebase_auth: ^3.3.9
+  firebase_storage: ^10.2.9
+  firebase_messaging: ^11.2.8
+  google_ml_kit:
+  flutter_bloc: ^8.0.1
+  hydrated_bloc: ^8.0.0
+  uuid: ^3.0.5
+  firebase_app_check: ^0.0.6+7
+  path_provider: ^2.0.9
+  cached_network_image: ^3.2.0
+  shimmer: ^2.0.0
+  google_fonts: ^2.3.1
+  permission_handler: ^9.2.0
+  intl: ^0.17.0
+  http: ^0.13.4
+  material_design_icons_flutter: ^5.0.6595
+  provider: ^6.0.2
+  flutter_rating_bar:
+  image_picker: ^0.8.4+10
+  google_maps_flutter: ^2.1.2
+  google_maps_webservice: ^0.0.20-nullsafety.5
+  flutter_polyline_points: ^1.0.0
+  flutter_google_places: ^0.3.0
+  image_cropper: ^1.5.0
+  location: ^4.3.0
+  shared_preferences: ^2.0.13
+  animated_widgets: ^1.1.0
+  lottie: ^1.2.2
+  google_geocoding: ^0.2.0
+  flutter_svg: ^1.0.3
+  geolocator: ^8.2.0
+  sliding_up_panel: ^2.0.0+1
+
+#dependency_overrides:
+#  flutter_google_places:
+#    git:
+#      url: https://github.com/hoc081098/flutter_google_places.git
+#      ref: 7b6c2aa2053131142c0e48639823d24f312d00c1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_native_splash: ^2.0.5
+  platform: ^3.1.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - images/
+    - assets/
