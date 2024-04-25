@@ -18,7 +18,7 @@ class ThemeHelper {
   bool get isDark => value == ThemeValue.light
       ? false
       : value == ThemeValue.systemPreferred
-          ? SchedulerBinding.instance!.window.platformBrightness == Brightness.dark
+          ? SchedulerBinding.instance.platformDispatcher.platformBrightness == Brightness.dark
           : true;
 
   MaterialColor get accentColor => Colors.red;

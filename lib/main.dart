@@ -34,23 +34,20 @@ void main() async {
     badge: true,
     sound: true,
   );
-  HydratedBlocOverrides.runZoned(
-    () => runApp(
-      MultiProvider(
-        child: MyApp(router, shouldOnBoard),
-        providers: [
-          BlocProvider(create: (_) => ThemeCubit()),
-          BlocProvider(create: (_) => ExistenceCubit()),
-          ChangeNotifierProvider(create: (_) => ProfileProvider()),
-          ChangeNotifierProvider(create: (_) => FareProvider()),
-          ChangeNotifierProvider(create: (_) => VehicleProvider()),
-          ChangeNotifierProvider(create: (_) => DriverProvider()),
-          BlocProvider(create: (_) => ProfileCubit()),
-          BlocProvider(create: (_) => LocationCubit()),
-        ],
-      ),
+  runApp(
+    MultiProvider(
+      child: MyApp(router, shouldOnBoard),
+      providers: [
+        BlocProvider(create: (_) => ThemeCubit()),
+        BlocProvider(create: (_) => ExistenceCubit()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (_) => FareProvider()),
+        ChangeNotifierProvider(create: (_) => VehicleProvider()),
+        ChangeNotifierProvider(create: (_) => DriverProvider()),
+        BlocProvider(create: (_) => ProfileCubit()),
+        BlocProvider(create: (_) => LocationCubit()),
+      ],
     ),
-    storage: storage,
   );
 }
 
@@ -69,15 +66,13 @@ class MyApp extends StatelessWidget {
           title: 'T-Moto',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            brightness: theme.isDark ? Brightness.dark : Brightness.light,
-            primarySwatch: theme.accentColor,
-            backgroundColor: theme.backgroundColor,
+            brightness: Brightness.light,
             canvasColor: theme.backgroundColor,
             shadowColor: theme.shadowColor,
             indicatorColor: theme.accentColor,
             elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
-                primary: theme.secondaryColor,
+                backgroundColor: theme.secondaryColor,
                 elevation: 1,
                 shadowColor: theme.hintColor,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -96,7 +91,7 @@ class MyApp extends StatelessWidget {
               elevation: 0,
             ),
             splashColor: Colors.transparent,
-            splashFactory: NoSplash.splashFactory,
+            splashFactory: NoSplash.splashFactory, colorScheme: ColorScheme.fromSwatch(primarySwatch: theme.accentColor).copyWith(background: theme.backgroundColor),
           ),
           home: shouldOnBoard ? OnBoardScreen() : LauncherScreen(),
           onGenerateRoute: (settings) => router.generateRoute(settings),
