@@ -2,20 +2,19 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart';
-import 'package:tmoto_passenger/src/data/model/direction.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/utils/constants.dart';
-import 'package:tmoto_passenger/src/utils/database_tables.dart';
-import 'package:tmoto_passenger/src/utils/network_response.dart';
+import 'package:passenger/src/data/model/direction.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/utils/constants.dart';
+import 'package:passenger/src/utils/database_tables.dart';
+import 'package:passenger/src/utils/network_response.dart';
 
 class RideService {
-  Stream<QuerySnapshot<Map<String, dynamic>>> monitor(String reference) =>
-      FirebaseFirestore.instance
-          .collection(DatabaseTable.rides)
-          .where("passengerReference", isEqualTo: reference)
-          .where("isCanceled", isNull: true)
-          .snapshots();
+  Stream<QuerySnapshot<Map<String, dynamic>>> monitor(String reference) => FirebaseFirestore.instance
+      .collection(DatabaseTable.rides)
+      .where("passengerReference", isEqualTo: reference)
+      .where("isCanceled", isNull: true)
+      .snapshots();
 
   Future<NetworkResponse<Direction?>> findDirection(
       double pickupLat, double pickupLng, double destinationLat, double destinationLng) async {
@@ -39,10 +38,7 @@ class RideService {
   Future<NetworkResponse<Ride?>> createRide(Ride ride) async {
     try {
       ride.createdAt = DateTime.now().millisecondsSinceEpoch;
-      await FirebaseFirestore.instance
-          .collection(DatabaseTable.rides)
-          .doc(ride.reference)
-          .set(ride.toMap);
+      await FirebaseFirestore.instance.collection(DatabaseTable.rides).doc(ride.reference).set(ride.toMap);
       return NetworkResponse(result: ride, success: true);
     } catch (error) {
       return NetworkResponse(result: null, success: false, error: error.toString());
@@ -51,10 +47,7 @@ class RideService {
 
   Future<NetworkResponse<bool?>> update(Ride ride) async {
     try {
-      await FirebaseFirestore.instance
-          .collection(DatabaseTable.rides)
-          .doc(ride.reference)
-          .set(ride.toMap);
+      await FirebaseFirestore.instance.collection(DatabaseTable.rides).doc(ride.reference).set(ride.toMap);
       return NetworkResponse(result: true, success: true);
     } catch (error) {
       return NetworkResponse(result: null, success: false, error: error.toString());

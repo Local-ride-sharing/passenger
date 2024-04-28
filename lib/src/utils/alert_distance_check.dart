@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class DirectionDistanceCheckAlert extends StatelessWidget {
   @override
@@ -18,16 +18,14 @@ class DirectionDistanceCheckAlert extends StatelessWidget {
               SizedBox(
                 height: 16,
               ),
-              Text("Your distance is less then 1 km!",
-                  style: TextStyles.body(context: context, color: theme.errorColor)),
+              Text("Your distance is less then 1 km!", style: TextStyles.body(context: context, color: theme.errorColor)),
               SizedBox(
                 height: 24,
               ),
               TextButton(
                 style: TextButton.styleFrom(
-                    primary: theme.errorColor, side: BorderSide(color: theme.errorColor, width: 1)),
-                child: Text("Ok".toUpperCase(),
-                    style: TextStyles.body(context: context, color: theme.errorColor)),
+                    backgroundColor: theme.errorColor, side: BorderSide(color: theme.errorColor, width: 1)),
+                child: Text("Ok".toUpperCase(), style: TextStyles.body(context: context, color: theme.errorColor)),
                 onPressed: () async {
                   Navigator.of(context).pop();
                 },

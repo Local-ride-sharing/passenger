@@ -1,25 +1,24 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/driver/find_single_driver_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/reservation/update_reservation_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/bid.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/model/reservation.dart';
-import 'package:tmoto_passenger/src/presentation/shimmer/shimmer_icon.dart';
-import 'package:tmoto_passenger/src/presentation/shimmer/shimmer_label.dart';
-import 'package:tmoto_passenger/src/presentation/widget/profile/reservations/widget_book_driver.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/driver/find_single_driver_cubit.dart';
+import 'package:passenger/src/business_logic/reservation/update_reservation_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/bid.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/model/reservation.dart';
+import 'package:passenger/src/presentation/shimmer/shimmer_icon.dart';
+import 'package:passenger/src/presentation/shimmer/shimmer_label.dart';
+import 'package:passenger/src/presentation/widget/profile/reservations/widget_book_driver.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class ReservationDriverListTile extends StatefulWidget {
   final Reservation reservation;
   final Bid bid;
   final bool showHighlight;
 
-  const ReservationDriverListTile(
-      {Key? key, required this.reservation, required this.bid, required this.showHighlight})
+  const ReservationDriverListTile({Key? key, required this.reservation, required this.bid, required this.showHighlight})
       : super(key: key);
 
   @override
@@ -30,8 +29,7 @@ class _ReservationDriverListTileState extends State<ReservationDriverListTile> {
   @override
   void initState() {
     Future.delayed(Duration(milliseconds: 1), () {
-      BlocProvider.of<FindSingleDriverCubit>(context)
-          .findDriver(context, widget.bid.driverReference);
+      BlocProvider.of<FindSingleDriverCubit>(context).findDriver(context, widget.bid.driverReference);
     });
     super.initState();
   }
@@ -59,8 +57,7 @@ class _ReservationDriverListTileState extends State<ReservationDriverListTile> {
                   ),
                   child: ShimmerIcon(24, 24),
                 ),
-                title: Align(
-                    alignment: Alignment.centerLeft, child: ShimmerLabel(size: Size(144, 12))),
+                title: Align(alignment: Alignment.centerLeft, child: ShimmerLabel(size: Size(144, 12))),
               );
             } else if (state is FindSingleDriverError) {
               return Icon(Icons.error);
@@ -70,8 +67,7 @@ class _ReservationDriverListTileState extends State<ReservationDriverListTile> {
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: widget.showHighlight &&
-                            widget.reservation.isSelectedPrimarily(driver.reference)
+                    color: widget.showHighlight && widget.reservation.isSelectedPrimarily(driver.reference)
                         ? theme.successColor
                         : theme.backgroundColor,
                     width: 1,
@@ -87,26 +83,23 @@ class _ReservationDriverListTileState extends State<ReservationDriverListTile> {
                     width: 42,
                     height: 42,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                    decoration: BoxDecoration(
-                        color: theme.shadowColor, borderRadius: BorderRadius.circular(42)),
+                    decoration: BoxDecoration(color: theme.shadowColor, borderRadius: BorderRadius.circular(42)),
                     child: driver.profilePicture.isEmpty
                         ? Icon(Icons.person_outline_rounded, color: theme.hintColor)
                         : CachedNetworkImage(
                             imageUrl: driver.profilePicture,
                             placeholder: (_, __) => ShimmerIcon(42, 42),
-                            errorWidget: (_, __, ___) =>
-                                Icon(Icons.person_outline_rounded, color: theme.hintColor),
+                            errorWidget: (_, __, ___) => Icon(Icons.person_outline_rounded, color: theme.hintColor),
                             width: 42,
                             height: 42,
                             fit: BoxFit.cover,
                           ),
                   ),
-                  title: Text(driver.name,
-                      style: TextStyles.body(context: context, color: theme.textColor)),
-                  subtitle: Text(driver.vehicle.registrationNo,
-                      style: TextStyles.caption(context: context, color: theme.textColor)),
-                  trailing: Text("৳ ${widget.bid.amount}",
-                      style: TextStyles.subHeadline(context: context, color: theme.textColor)),
+                  title: Text(driver.name, style: TextStyles.body(context: context, color: theme.textColor)),
+                  subtitle:
+                      Text(driver.vehicle.registrationNo, style: TextStyles.caption(context: context, color: theme.textColor)),
+                  trailing:
+                      Text("৳ ${widget.bid.amount}", style: TextStyles.subHeadline(context: context, color: theme.textColor)),
                   onTap: () {
                     showModalBottomSheet(
                         context: context,
@@ -115,8 +108,7 @@ class _ReservationDriverListTileState extends State<ReservationDriverListTile> {
                                 BlocProvider(create: (_) => FindSingleDriverCubit()),
                                 BlocProvider(create: (_) => UpdateReservationCubit()),
                               ],
-                              child: BookDriverBottomSheet(
-                                  reservation: widget.reservation, bid: widget.bid),
+                              child: BookDriverBottomSheet(reservation: widget.reservation, bid: widget.bid),
                             ),
                         barrierColor: theme.shadowColor,
                         isScrollControlled: true);

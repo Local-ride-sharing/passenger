@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/driver/find_single_driver_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/ride_rating_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/trips/my_trips_list_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/presentation/widget/profile/my_trips/widget_my_trips_driver_information.dart';
-import 'package:tmoto_passenger/src/presentation/widget/profile/my_trips/widget_my_trips_driver_profile_image.dart';
-import 'package:tmoto_passenger/src/utils/alert_ratting.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/driver/find_single_driver_cubit.dart';
+import 'package:passenger/src/business_logic/ride/ride_rating_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/business_logic/trips/my_trips_list_cubit.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/presentation/widget/profile/my_trips/widget_my_trips_driver_information.dart';
+import 'package:passenger/src/presentation/widget/profile/my_trips/widget_my_trips_driver_profile_image.dart';
+import 'package:passenger/src/utils/alert_ratting.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class MyTripsWidget extends StatefulWidget {
   @override
@@ -33,9 +33,7 @@ class _MyTripsWidgetState extends State<MyTripsWidget> with TickerProviderStateM
         child: Text("Completed"),
       ),
     ),
-    Tab(
-        child:
-            Padding(padding: const EdgeInsets.symmetric(horizontal: 12), child: Text("Canceled"))),
+    Tab(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 12), child: Text("Canceled"))),
   ];
 
   List<List<Ride>> rides = [[], []];
@@ -94,10 +92,9 @@ class _MyTripsWidgetState extends State<MyTripsWidget> with TickerProviderStateM
                           unselectedLabelColor: theme.hintColor,
                           labelColor: theme.textColor,
                           labelPadding: EdgeInsets.symmetric(horizontal: 12),
-                          labelStyle: TextStyles.body(context: context, color: theme.textColor)
-                              .copyWith(fontWeight: FontWeight.w900),
-                          unselectedLabelStyle:
-                              TextStyles.body(context: context, color: theme.hintColor),
+                          labelStyle:
+                              TextStyles.body(context: context, color: theme.textColor).copyWith(fontWeight: FontWeight.w900),
+                          unselectedLabelStyle: TextStyles.body(context: context, color: theme.hintColor),
                           indicatorWeight: 2,
                           indicatorColor: theme.textColor,
                           physics: ScrollPhysics(),
@@ -111,9 +108,7 @@ class _MyTripsWidgetState extends State<MyTripsWidget> with TickerProviderStateM
                       children: rides.map(
                         (trips) {
                           return trips.isEmpty
-                              ? Center(
-                                  child: Icon(Icons.ballot_outlined,
-                                      size: 144, color: theme.secondaryColor))
+                              ? Center(child: Icon(Icons.ballot_outlined, size: 144, color: theme.secondaryColor))
                               : ListView.separated(
                                   separatorBuilder: (context, index) {
                                     return const SizedBox(height: 8);
@@ -122,36 +117,31 @@ class _MyTripsWidgetState extends State<MyTripsWidget> with TickerProviderStateM
                                     final Ride ride = trips[index];
                                     return Container(
                                       padding: EdgeInsets.all(16),
-                                      decoration: BoxDecoration(
-                                          color: theme.backgroundColor,
-                                          borderRadius: BorderRadius.circular(16)),
+                                      decoration:
+                                          BoxDecoration(color: theme.backgroundColor, borderRadius: BorderRadius.circular(16)),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           ListTile(
                                             dense: true,
-                                            visualDensity:
-                                                VisualDensity(horizontal: -4, vertical: -4),
+                                            visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                                             horizontalTitleGap: 0,
                                             contentPadding: EdgeInsets.zero,
                                             leading: Icon(Icons.hail, color: theme.textColor),
                                             title: Text(
                                               ride.pickup.label,
-                                              style: TextStyles.caption(
-                                                  context: context, color: theme.textColor),
+                                              style: TextStyles.caption(context: context, color: theme.textColor),
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                             trailing: Text(
                                               "৳ ${ride.fare.toString()}",
-                                              style: TextStyles.subTitle(
-                                                  context: context, color: theme.accentColor),
+                                              style: TextStyles.subTitle(context: context, color: theme.accentColor),
                                             ),
                                           ),
                                           ListTile(
                                             dense: true,
-                                            visualDensity:
-                                                VisualDensity(horizontal: -4, vertical: -4),
+                                            visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                                             horizontalTitleGap: 0,
                                             contentPadding: EdgeInsets.zero,
                                             leading: Icon(
@@ -160,8 +150,7 @@ class _MyTripsWidgetState extends State<MyTripsWidget> with TickerProviderStateM
                                             ),
                                             title: Text(
                                               ride.destination.label,
-                                              style: TextStyles.caption(
-                                                  context: context, color: theme.textColor),
+                                              style: TextStyles.caption(context: context, color: theme.textColor),
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
                                             ),
@@ -169,18 +158,14 @@ class _MyTripsWidgetState extends State<MyTripsWidget> with TickerProviderStateM
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text("${ride.duration} min",
-                                                    style: TextStyles.caption(
-                                                            context: context,
-                                                            color: theme.hintColor)
+                                                    style: TextStyles.caption(context: context, color: theme.hintColor)
                                                         .copyWith(fontSize: 10)),
                                                 SizedBox(width: 8),
-                                                Icon(Icons.circle,
-                                                    color: theme.secondaryColor, size: 8),
+                                                Icon(Icons.circle, color: theme.secondaryColor, size: 8),
                                                 SizedBox(width: 8),
                                                 Text(
                                                   "${ride.distance.toStringAsFixed(1)} km",
-                                                  style: TextStyles.caption(
-                                                          context: context, color: theme.hintColor)
+                                                  style: TextStyles.caption(context: context, color: theme.hintColor)
                                                       .copyWith(fontSize: 10),
                                                 ),
                                               ],
@@ -191,17 +176,14 @@ class _MyTripsWidgetState extends State<MyTripsWidget> with TickerProviderStateM
                                             child: ListTile(
                                               dense: true,
                                               contentPadding: EdgeInsets.zero,
-                                              visualDensity:
-                                                  VisualDensity(horizontal: -4, vertical: -4),
-                                              leading:
-                                                  Icon(Icons.date_range, color: theme.textColor),
+                                              visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+                                              leading: Icon(Icons.date_range, color: theme.textColor),
                                               horizontalTitleGap: 0,
                                               title: ride.startAt == null || ride.endAt == null
                                                   ? null
                                                   : Text(
                                                       "${DateFormat("h:mm a").format(DateTime.fromMillisecondsSinceEpoch(ride.startAt!))} - ${DateFormat("h:mm a").format(DateTime.fromMillisecondsSinceEpoch(ride.endAt!))} ${DateFormat("dd MMM, yyyy").format(DateTime.fromMillisecondsSinceEpoch(ride.startAt!))}",
-                                                      style: TextStyles.caption(
-                                                          context: context, color: theme.textColor),
+                                                      style: TextStyles.caption(context: context, color: theme.textColor),
                                                     ),
                                             ),
                                           ),
@@ -224,37 +206,29 @@ class _MyTripsWidgetState extends State<MyTripsWidget> with TickerProviderStateM
                                                   ? Row(
                                                       mainAxisSize: MainAxisSize.min,
                                                       children: [
-                                                        Icon(Icons.star,
-                                                            size: 18, color: theme.primaryColor),
+                                                        Icon(Icons.star, size: 18, color: theme.primaryColor),
                                                         SizedBox(width: 4),
                                                         Text(
-                                                          ride.rating!
-                                                              .toStringAsFixed(2)
-                                                              .toString(),
-                                                          style: TextStyles.caption(
-                                                              context: context,
-                                                              color: theme.primaryColor),
+                                                          ride.rating!.toStringAsFixed(2).toString(),
+                                                          style:
+                                                              TextStyles.caption(context: context, color: theme.primaryColor),
                                                         ),
                                                       ],
                                                     )
                                                   : CircleAvatar(
-                                                      backgroundColor:
-                                                          theme.shadowColor.withOpacity(.07),
+                                                      backgroundColor: theme.shadowColor.withOpacity(.07),
                                                       child: IconButton(
                                                         onPressed: () {
                                                           showDialog(
                                                             context: context,
                                                             barrierColor: theme.shadowColor,
-                                                            builder: (deleteContext) =>
-                                                                BlocProvider(
-                                                              create: (context) =>
-                                                                  RideRatingCubit(),
+                                                            builder: (deleteContext) => BlocProvider(
+                                                              create: (context) => RideRatingCubit(),
                                                               child: RatingAlert(ride),
                                                             ),
                                                           );
                                                         },
-                                                        icon: Icon(Icons.star_outline,
-                                                            color: theme.primaryColor, size: 14),
+                                                        icon: Icon(Icons.star_outline, color: theme.primaryColor, size: 14),
                                                       ),
                                                     ),
                                             ),

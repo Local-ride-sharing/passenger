@@ -2,29 +2,29 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/address/saved_address_list_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/dashboard/instant_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/dashboard/point_vehicle_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/dashboard/reservation_vehicle_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/passenger/profile_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/passenger/update_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/cancel_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/rides_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/data/model/saved_address.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_vehicle.dart';
-import 'package:tmoto_passenger/src/presentation/widget/dashboard/widget__initial_menu.dart';
-import 'package:tmoto_passenger/src/presentation/widget/dashboard/widget_dashboard_curve.dart';
-import 'package:tmoto_passenger/src/presentation/widget/dashboard/widget_last_active_ride.dart';
-import 'package:tmoto_passenger/src/presentation/widget/dashboard/widget_profile_picture.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/helper.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/address/saved_address_list_cubit.dart';
+import 'package:passenger/src/business_logic/dashboard/instant_ride_cubit.dart';
+import 'package:passenger/src/business_logic/dashboard/point_vehicle_cubit.dart';
+import 'package:passenger/src/business_logic/dashboard/reservation_vehicle_cubit.dart';
+import 'package:passenger/src/business_logic/passenger/profile_cubit.dart';
+import 'package:passenger/src/business_logic/passenger/update_cubit.dart';
+import 'package:passenger/src/business_logic/ride/cancel_ride_cubit.dart';
+import 'package:passenger/src/business_logic/ride/rides_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/model/saved_address.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/data/provider/provider_vehicle.dart';
+import 'package:passenger/src/presentation/widget/dashboard/widget__initial_menu.dart';
+import 'package:passenger/src/presentation/widget/dashboard/widget_dashboard_curve.dart';
+import 'package:passenger/src/presentation/widget/dashboard/widget_last_active_ride.dart';
+import 'package:passenger/src/presentation/widget/dashboard/widget_profile_picture.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/helper.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -44,8 +44,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       route: AppRouter.bookReservation,
       isAmbulance: true,
     ),
-    DashboardMenu(
-        image: "images/reservations.png", name: "Reservations", route: AppRouter.bookReservation),
+    DashboardMenu(image: "images/reservations.png", name: "Reservations", route: AppRouter.bookReservation),
   ];
 
   @override
@@ -64,8 +63,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       if (data["category"] == "ride-accepted") {
         final String reference = data["reference"];
         if (mounted) {
-          Navigator.of(context)
-              .pushReplacementNamed(AppRouter.driverArrivalTracking, arguments: reference);
+          Navigator.of(context).pushReplacementNamed(AppRouter.driverArrivalTracking, arguments: reference);
         }
       }
     });
@@ -82,8 +80,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       Map<String, dynamic> data = message.data;
       if (data["category"] == "ride-accepted") {
         final String reference = data["reference"];
-        Navigator.of(context)
-            .pushReplacementNamed(AppRouter.driverArrivalTracking, arguments: reference);
+        Navigator.of(context).pushReplacementNamed(AppRouter.driverArrivalTracking, arguments: reference);
       }
     });
 
@@ -126,8 +123,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   rides.sort((b, a) => a.createdAt.compareTo(b.createdAt));
                   final DateTime now = DateTime.now();
                   if (rides.isNotEmpty &&
-                      rides.first.createdAt >
-                          DateTime(now.year, now.month, now.day, 0, 0, 0).millisecondsSinceEpoch &&
+                      rides.first.createdAt > DateTime(now.year, now.month, now.day, 0, 0, 0).millisecondsSinceEpoch &&
                       rides.first.rideCurrentStatus != RideCurrentStatus.finished &&
                       !(rides.first.isCanceled ?? true)) {
                     setState(() {
@@ -151,8 +147,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
                 leading: DashboardProfilePicture(),
                 horizontalTitleGap: 8,
-                title: Text(Helper.greetings,
-                    style: TextStyles.caption(context: context, color: theme.backgroundColor)),
+                title: Text(Helper.greetings, style: TextStyles.caption(context: context, color: theme.backgroundColor)),
                 subtitle: Text(
                   profile?.name ?? "-",
                   style: TextStyles.subTitle(context: context, color: theme.backgroundColor),
@@ -179,8 +174,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           title: Text(
                             "All in #1 ride sharing platform!",
                             textAlign: TextAlign.justify,
-                            style: TextStyles.body(context: context, color: Colors.white60)
-                                .copyWith(fontWeight: FontWeight.bold),
+                            style:
+                                TextStyles.body(context: context, color: Colors.white60).copyWith(fontWeight: FontWeight.bold),
                           ),
                           subtitle: Text(
                             """We want to make that dream happen.\nValue your time,time will value you.\nRide T-Moto,Save time.""",
@@ -250,14 +245,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   children: [
                                     Container(
                                       height: 48,
-                                      decoration: BoxDecoration(
-                                          color: theme.backgroundColor,
-                                          borderRadius: BorderRadius.circular(16)),
+                                      decoration:
+                                          BoxDecoration(color: theme.backgroundColor, borderRadius: BorderRadius.circular(16)),
                                       alignment: Alignment.centerLeft,
                                       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                                       child: Text("Where to?",
-                                          style: TextStyles.body(
-                                                  context: context, color: theme.textColor)
+                                          style: TextStyles.body(context: context, color: theme.textColor)
                                               .copyWith(fontWeight: FontWeight.bold)),
                                     ),
                                     SizedBox(height: 8),
@@ -270,8 +263,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                         final SavedAddress address = savedAddresses[index];
                                         return ListTile(
                                           dense: true,
-                                          visualDensity:
-                                              VisualDensity(horizontal: -4, vertical: -4),
+                                          visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                                           contentPadding: EdgeInsets.all(0),
                                           leading: CircleAvatar(
                                             child: Icon(
@@ -285,19 +277,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                             backgroundColor: theme.secondaryColor,
                                           ),
                                           title: Text(address.label,
-                                              style: TextStyles.body(
-                                                  context: context, color: theme.primaryColor)),
+                                              style: TextStyles.body(context: context, color: theme.primaryColor)),
                                           subtitle: Text(
                                               address.addressType == AddressType.Home
                                                   ? "Home"
                                                   : address.addressType == AddressType.Work
                                                       ? "Work"
                                                       : "Other",
-                                              style: TextStyles.caption(
-                                                  context: context, color: theme.hintColor)),
+                                              style: TextStyles.caption(context: context, color: theme.hintColor)),
                                           onTap: () {
-                                            Navigator.of(context).pushNamed(AppRouter.instantRide,
-                                                arguments: address.address);
+                                            Navigator.of(context).pushNamed(AppRouter.instantRide, arguments: address.address);
                                           },
                                         );
                                       },
@@ -313,12 +302,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       dense: true,
                                       contentPadding: EdgeInsets.all(0),
                                       visualDensity: VisualDensity.compact,
-                                      leading: CircleAvatar(
-                                          child: Icon(Icons.add),
-                                          backgroundColor: theme.secondaryColor),
+                                      leading: CircleAvatar(child: Icon(Icons.add), backgroundColor: theme.secondaryColor),
                                       title: Text("Choose a new address",
-                                          style: TextStyles.body(
-                                              context: context, color: theme.textColor)),
+                                          style: TextStyles.body(context: context, color: theme.textColor)),
                                     )
                                   ],
                                 );

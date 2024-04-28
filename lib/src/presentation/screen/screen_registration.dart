@@ -2,17 +2,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/custom_step.dart';
-import 'package:tmoto_passenger/src/presentation/widget/registration/steps/step_dob.dart';
-import 'package:tmoto_passenger/src/presentation/widget/registration/steps/step_finish.dart';
-import 'package:tmoto_passenger/src/presentation/widget/registration/steps/step_gender.dart';
-import 'package:tmoto_passenger/src/presentation/widget/registration/steps/step_name.dart';
-import 'package:tmoto_passenger/src/presentation/widget/registration/steps/step_profile_picture.dart';
-import 'package:tmoto_passenger/src/presentation/widget/widget_stepper.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/helper.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/custom_step.dart';
+import 'package:passenger/src/presentation/widget/registration/steps/step_dob.dart';
+import 'package:passenger/src/presentation/widget/registration/steps/step_finish.dart';
+import 'package:passenger/src/presentation/widget/registration/steps/step_gender.dart';
+import 'package:passenger/src/presentation/widget/registration/steps/step_name.dart';
+import 'package:passenger/src/presentation/widget/registration/steps/step_profile_picture.dart';
+import 'package:passenger/src/presentation/widget/widget_stepper.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/helper.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 import 'package:uuid/uuid.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -116,8 +116,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               onNext: () {
                 if (currentIndex == 1) {
                   if ((name).isEmpty) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(getErrorSnackBar(context, "Name not found"));
+                    ScaffoldMessenger.of(context).showSnackBar(getErrorSnackBar(context, "Name not found"));
                   } else {
                     setState(() {
                       currentIndex += 1;

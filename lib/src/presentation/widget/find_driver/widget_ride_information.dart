@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/single_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/ride/single_ride_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class RideInformation extends StatefulWidget {
   @override
@@ -22,8 +22,7 @@ class _RideInformationState extends State<RideInformation> {
             if (state is SingleRideError) {
               return Text(state.error);
             } else if (state is SingleRideNetworking) {
-              return Text("Searching ride details",
-                  style: TextStyles.caption(context: context, color: theme.textColor));
+              return Text("Searching ride details", style: TextStyles.caption(context: context, color: theme.textColor));
             } else if (state is SingleRideSuccess) {
               final Ride ride = state.data;
               return Container(
@@ -40,8 +39,7 @@ class _RideInformationState extends State<RideInformation> {
                       leading: Icon(Icons.circle_outlined, color: theme.textColor),
                       trailing: Text("${ride.distance.toString()} km",
                           style: TextStyles.caption(context: context, color: theme.textColor)),
-                      title: Text(ride.pickup.label,
-                          style: TextStyles.caption(context: context, color: theme.textColor)),
+                      title: Text(ride.pickup.label, style: TextStyles.caption(context: context, color: theme.textColor)),
                     ),
                     ListTile(
                       dense: true,
@@ -51,8 +49,7 @@ class _RideInformationState extends State<RideInformation> {
                       leading: Icon(Icons.circle, color: theme.textColor),
                       trailing: Text("${ride.duration.toString()} min",
                           style: TextStyles.caption(context: context, color: theme.textColor)),
-                      title: Text(ride.destination.label,
-                          style: TextStyles.caption(context: context, color: theme.textColor)),
+                      title: Text(ride.destination.label, style: TextStyles.caption(context: context, color: theme.textColor)),
                     ),
                   ],
                 ),

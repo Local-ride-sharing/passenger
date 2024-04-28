@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/create_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/ride/create_ride_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 import 'package:uuid/uuid.dart';
 
 class NoDriverFound extends StatefulWidget {
@@ -34,8 +34,7 @@ class _NoDriverFoundState extends State<NoDriverFound> {
   void initState() {
     final profileProvider = Provider.of<ProfileProvider>(context, listen: false);
     profile = profileProvider.profile!;
-    prioritySelection =
-        profile.gender == Gender.female ? RidePriority.femalePriority : RidePriority.male;
+    prioritySelection = profile.gender == Gender.female ? RidePriority.femalePriority : RidePriority.male;
     super.initState();
   }
 
@@ -59,8 +58,7 @@ class _NoDriverFoundState extends State<NoDriverFound> {
               children: [
                 Icon(Icons.warning_rounded, color: theme.errorColor, size: 54),
                 SizedBox(height: 8),
-                Text("No driver found",
-                    style: TextStyles.caption(context: context, color: theme.errorColor)),
+                Text("No driver found", style: TextStyles.caption(context: context, color: theme.errorColor)),
                 SizedBox(height: 8),
                 Container(
                   width: MediaQuery.of(context).size.width,
@@ -68,8 +66,7 @@ class _NoDriverFoundState extends State<NoDriverFound> {
                     listener: (_, state) {
                       if (state is CreateRideSuccess) {
                         widget.ride.reference = state.data.reference;
-                        Navigator.of(context)
-                            .pushReplacementNamed(AppRouter.findDriver, arguments: widget.ride);
+                        Navigator.of(context).pushReplacementNamed(AppRouter.findDriver, arguments: widget.ride);
                       }
                     },
                     builder: (_, state) {
@@ -94,16 +91,13 @@ class _NoDriverFoundState extends State<NoDriverFound> {
                             }
                           },
                           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: Text("Oops try again",
-                              style: TextStyles.title(context: context, color: theme.textColor)),
+                          child: Text("Oops try again", style: TextStyles.title(context: context, color: theme.textColor)),
                         );
                       } else if (state is CreateRideNetworking) {
                         return ElevatedButton(
                           onPressed: () {},
                           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: Center(
-                              child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation(Colors.blue))),
+                          child: Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.blue))),
                         );
                       } else if (state is CreateRideSuccess) {
                         return ElevatedButton(
@@ -132,8 +126,7 @@ class _NoDriverFoundState extends State<NoDriverFound> {
                             }
                           },
                           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: Text("Try again",
-                              style: TextStyles.title(context: context, color: theme.textColor)),
+                          child: Text("Try again", style: TextStyles.title(context: context, color: theme.textColor)),
                         );
                       }
                     },

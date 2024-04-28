@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/presentation/widget/profile/whidget_profile_picture.dart';
-import 'package:tmoto_passenger/src/presentation/widget/profile/widget_menu.dart';
-import 'package:tmoto_passenger/src/presentation/widget/profile/widget_theme.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/constants.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/presentation/widget/profile/whidget_profile_picture.dart';
+import 'package:passenger/src/presentation/widget/profile/widget_menu.dart';
+import 'package:passenger/src/presentation/widget/profile/widget_theme.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/constants.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -38,8 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             leading: new IconButton(
                 icon: new Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil(AppRouter.dashboard, (route) => false);
+                  Navigator.of(context).pushNamedAndRemoveUntil(AppRouter.dashboard, (route) => false);
                 }),
             actions: [
               Padding(
@@ -49,10 +48,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Navigator.of(context).pushNamed(AppRouter.editProfile);
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: theme.secondaryColor, padding: EdgeInsets.symmetric(horizontal: 16)),
+                      backgroundColor: theme.secondaryColor, padding: EdgeInsets.symmetric(horizontal: 16)),
                   icon: Icon(Icons.edit_outlined, color: theme.primaryColor, size: 24),
-                  label: Text("Edit",
-                      style: TextStyles.subTitle(context: context, color: theme.primaryColor)),
+                  label: Text("Edit", style: TextStyles.subTitle(context: context, color: theme.primaryColor)),
                 ),
               ),
             ],
@@ -72,8 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 16),
-                      child:
-                          SizedBox(child: ProfilePictureWidget(passenger), width: 128, height: 128),
+                      child: SizedBox(child: ProfilePictureWidget(passenger), width: 128, height: 128),
                     ),
                     SizedBox(height: 12),
                     Padding(
@@ -89,11 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       visible: passenger.name.contains(" "),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 16),
-                        child: Text(
-                            passenger.name
-                                .replaceAll(passenger.name.split(" ").first, "")
-                                .trim()
-                                .toUpperCase(),
+                        child: Text(passenger.name.replaceAll(passenger.name.split(" ").first, "").trim().toUpperCase(),
                             style: TextStyles.subTitle(context: context, color: theme.textColor)),
                       ),
                     ),
@@ -150,15 +143,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ElevatedButton.icon(
                       onPressed: () async {
                         await FirebaseAuth.instance.signOut();
-                        Navigator.of(context)
-                            .pushNamedAndRemoveUntil(AppRouter.login, (route) => false);
+                        Navigator.of(context).pushNamedAndRemoveUntil(AppRouter.login, (route) => false);
                       },
                       icon: Icon(Icons.logout, color: theme.errorColor, size: 24),
-                      label: Text("Sign Out",
-                          style: TextStyles.title(context: context, color: theme.errorColor)),
+                      label: Text("Sign Out", style: TextStyles.title(context: context, color: theme.errorColor)),
                     ),
-                    Text(appVersion,
-                        style: TextStyles.caption(context: context, color: theme.hintColor)),
+                    Text(appVersion, style: TextStyles.caption(context: context, color: theme.hintColor)),
                   ],
                 ),
                 right: 16,

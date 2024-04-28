@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/custom_step.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/custom_step.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class StepperWidget extends StatefulWidget {
   final List<CustomStep> steps;
@@ -67,8 +67,8 @@ class _StepperWidgetState extends State<StepperWidget> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           CircleAvatar(
-                            child: Icon(step.icon,
-                                color: widget.currentIndex == index ? theme.backgroundColor : theme.iconColor),
+                            child:
+                                Icon(step.icon, color: widget.currentIndex == index ? theme.backgroundColor : theme.iconColor),
                             backgroundColor: widget.currentIndex == index ? theme.primaryColor : theme.secondaryColor,
                             radius: 16,
                           ),
@@ -78,8 +78,7 @@ class _StepperWidgetState extends State<StepperWidget> {
                             style: TextStyles.body(
                                     context: context,
                                     color: widget.currentIndex == index ? theme.primaryColor : theme.hintColor)
-                                .copyWith(
-                                    fontWeight: widget.currentIndex == index ? FontWeight.bold : FontWeight.normal),
+                                .copyWith(fontWeight: widget.currentIndex == index ? FontWeight.bold : FontWeight.normal),
                           ),
                         ],
                       );
@@ -123,7 +122,8 @@ class _StepperWidgetState extends State<StepperWidget> {
                             widget.onBack();
                             controller.jumpTo((widget.currentIndex - 1) * 112);
                           },
-                          style: ElevatedButton.styleFrom(primary: theme.secondaryColor, padding: EdgeInsets.symmetric(horizontal: 16)),
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: theme.secondaryColor, padding: EdgeInsets.symmetric(horizontal: 16)),
                           icon: Icon(Icons.arrow_back_rounded, color: theme.primaryColor),
                           label: Text("Back", style: TextStyles.body(context: context, color: theme.primaryColor)),
                         ),
@@ -140,7 +140,7 @@ class _StepperWidgetState extends State<StepperWidget> {
                             color: theme.primaryColor,
                           ),
                           style: ElevatedButton.styleFrom(
-                              primary: theme.secondaryColor, padding: EdgeInsets.symmetric(horizontal: 16)),
+                              backgroundColor: theme.secondaryColor, padding: EdgeInsets.symmetric(horizontal: 16)),
                           label: Text(
                             widget.currentIndex == (widget.steps.length - 2) ? "Finish" : "Next",
                             style: TextStyles.body(context: context, color: theme.primaryColor),

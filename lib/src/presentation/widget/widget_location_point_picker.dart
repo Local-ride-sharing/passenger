@@ -6,20 +6,20 @@ import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/address/saved_address_list_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/location_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/data/model/current_location.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/model/saved_address.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/presentation/widget/widget_back_button.dart';
-import 'package:tmoto_passenger/src/utils/constants.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/helper.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/address/saved_address_list_cubit.dart';
+import 'package:passenger/src/business_logic/location_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/data/model/current_location.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/model/saved_address.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/presentation/widget/widget_back_button.dart';
+import 'package:passenger/src/utils/constants.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/helper.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class LocationPointPicker extends StatefulWidget {
   final Address? address;
@@ -85,9 +85,8 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
           body: Stack(
             children: [
               GoogleMap(
-                initialCameraPosition: CameraPosition(
-                    target: LatLng(currentAddress?.latitude ?? 0, currentAddress?.longitude ?? 0),
-                    zoom: 18),
+                initialCameraPosition:
+                    CameraPosition(target: LatLng(currentAddress?.latitude ?? 0, currentAddress?.longitude ?? 0), zoom: 18),
                 mapType: MapType.normal,
                 indoorViewEnabled: false,
                 onMapCreated: mapCreated,
@@ -99,8 +98,7 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                 compassEnabled: false,
                 buildingsEnabled: true,
                 rotateGesturesEnabled: false,
-                gestureRecognizers: Set()
-                  ..add(Factory<EagerGestureRecognizer>(() => EagerGestureRecognizer())),
+                gestureRecognizers: Set()..add(Factory<EagerGestureRecognizer>(() => EagerGestureRecognizer())),
                 onCameraMoveStarted: () {
                   if (!isSearching) {
                     setState(() {
@@ -120,9 +118,7 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                       isDragging = false;
                       isSearching = true;
                     });
-                    Helper.findAddress(
-                            currentAddress?.latitude ?? 0, currentAddress?.longitude ?? 0)
-                        .then((value) {
+                    Helper.findAddress(currentAddress?.latitude ?? 0, currentAddress?.longitude ?? 0).then((value) {
                       if (value != null) {
                         setState(() {
                           currentAddress = value;
@@ -160,8 +156,7 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                       padding: EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: theme.backgroundColor,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
                       ),
                       child: SingleChildScrollView(
                         child: Column(
@@ -194,17 +189,13 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                                       isSearching = true;
                                     });
                                     final places = GoogleMapsPlaces(apiKey: MAP_API_WEB_KEY);
-                                    final response =
-                                        await places.getDetailsByPlaceId(p.placeId ?? "");
+                                    final response = await places.getDetailsByPlaceId(p.placeId ?? "");
 
                                     currentAddress?.label = response.result.formattedAddress ?? "";
-                                    currentAddress?.latitude =
-                                        response.result.geometry?.location.lat ?? 0;
-                                    currentAddress?.longitude =
-                                        response.result.geometry?.location.lng ?? 0;
+                                    currentAddress?.latitude = response.result.geometry?.location.lat ?? 0;
+                                    currentAddress?.longitude = response.result.geometry?.location.lng ?? 0;
                                     await mapController?.animateCamera(CameraUpdate.newLatLng(
-                                        LatLng(currentAddress?.latitude ?? 0,
-                                            currentAddress?.longitude ?? 0)));
+                                        LatLng(currentAddress?.latitude ?? 0, currentAddress?.longitude ?? 0)));
                                     setState(() {
                                       isSearching = false;
                                     });
@@ -226,9 +217,8 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   isSearching ? "searching" : currentAddress?.label ?? "search",
-                                  style: TextStyles.body(
-                                      context: context,
-                                      color: isSearching ? theme.hintColor : theme.textColor),
+                                  style:
+                                      TextStyles.body(context: context, color: isSearching ? theme.hintColor : theme.textColor),
                                 ),
                               ),
                             ),
@@ -255,8 +245,7 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                                           children: addresses
                                               .map((e) => ActionChip(
                                                     elevation: 2,
-                                                    padding: EdgeInsets.symmetric(
-                                                        horizontal: 8, vertical: 4),
+                                                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                                                     labelPadding: EdgeInsets.only(right: 4),
                                                     avatar: Icon(
                                                       e.addressType == AddressType.Home
@@ -268,9 +257,7 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                                                       color: theme.textColor,
                                                     ),
                                                     label: Text(e.label,
-                                                        style: TextStyles.body(
-                                                            context: context,
-                                                            color: theme.textColor)),
+                                                        style: TextStyles.body(context: context, color: theme.textColor)),
                                                     backgroundColor: theme.secondaryColor,
                                                     onPressed: () {
                                                       setState(() {
@@ -278,12 +265,10 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                                                         currentAddress?.label = e.label;
                                                         currentAddress?.latitude = e.latitude;
                                                         currentAddress?.longitude = e.longitude;
-                                                        mapController!.animateCamera(
-                                                            CameraUpdate.newLatLngZoom(
-                                                                LatLng(
-                                                                    currentAddress?.latitude ?? 0,
-                                                                    currentAddress?.longitude ?? 0),
-                                                                18));
+                                                        mapController!.animateCamera(CameraUpdate.newLatLngZoom(
+                                                            LatLng(
+                                                                currentAddress?.latitude ?? 0, currentAddress?.longitude ?? 0),
+                                                            18));
                                                       });
                                                       Future.delayed(Duration(milliseconds: 1), () {
                                                         setState(() {
@@ -307,7 +292,7 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                               height: 54,
                               margin: const EdgeInsets.only(top: 16),
                               child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(primary: theme.accentColor),
+                                style: ElevatedButton.styleFrom(backgroundColor: theme.accentColor),
                                 onPressed: currentAddress == null
                                     ? null
                                     : () {
@@ -316,8 +301,7 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                                       },
                                 clipBehavior: Clip.antiAliasWithSaveLayer,
                                 child: Text("Confirm address",
-                                    style: TextStyles.title(
-                                        context: context, color: theme.backgroundColor)),
+                                    style: TextStyles.title(context: context, color: theme.backgroundColor)),
                               ),
                             ),
                           ],
@@ -348,8 +332,8 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
         final LatLng currentLocation = LatLng(location.latitude, location.longitude);
         mapController!.animateCamera(CameraUpdate.newLatLngZoom(currentLocation, 18));
       } else {
-        mapController!.animateCamera(CameraUpdate.newLatLngZoom(
-            LatLng(currentAddress?.latitude ?? 0, currentAddress?.longitude ?? 0), 18));
+        mapController!.animateCamera(
+            CameraUpdate.newLatLngZoom(LatLng(currentAddress?.latitude ?? 0, currentAddress?.longitude ?? 0), 18));
       }
     });
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/model/ride.dart';
 
 class InheritedRide extends InheritedWidget {
   final Ride ride;

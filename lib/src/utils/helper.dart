@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_geocoding/google_geocoding.dart';
 import 'package:http/http.dart';
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/text_styles.dart';
 
 import 'constants.dart';
 
@@ -79,7 +79,8 @@ class Helper {
     _publishNotification(driver.token, notification, data);
   }
 
-  void publishDriverReservationConfirmationRequestNotification(String reservationReference, String driverToken, String route) async {
+  void publishDriverReservationConfirmationRequestNotification(
+      String reservationReference, String driverToken, String route) async {
     final Map<String, String> notification = {
       "title": "Reservation confirmation request",
       "body": "Awaiting for your confirmation of \"$route\" reservation",
@@ -95,14 +96,15 @@ class Helper {
     final Map<String, String> headers = {
       "Content-Type": "application/json",
       "Authorization":
-      "key=AAAAJa5utSY:APA91bHpr0P84-3xnfo6qpZq250fholOPSd-vx8M-RuVexsku982cSoDsXqdb3mXBUSnfnYi33qMf8A5InyY0Ycjm8kpzGpAzMqcydftNQhuxLmMZTVVI5r3jyqwnH5HOWsjaCnxH80d",
+          "key=AAAAJa5utSY:APA91bHpr0P84-3xnfo6qpZq250fholOPSd-vx8M-RuVexsku982cSoDsXqdb3mXBUSnfnYi33qMf8A5InyY0Ycjm8kpzGpAzMqcydftNQhuxLmMZTVVI5r3jyqwnH5HOWsjaCnxH80d",
     };
     final Map<String, dynamic> body = {
       "to": token,
       "notification": notification,
       "data": data,
     };
-    final Response response = await post(Uri.parse("https://fcm.googleapis.com/fcm/send"), headers: headers, body: json.encode(body));
+    final Response response =
+        await post(Uri.parse("https://fcm.googleapis.com/fcm/send"), headers: headers, body: json.encode(body));
     if (response.statusCode == 200) {
       print(response.body);
     }

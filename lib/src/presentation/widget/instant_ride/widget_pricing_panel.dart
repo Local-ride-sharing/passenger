@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
-import 'package:tmoto_passenger/src/business_logic/dashboard/instant_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/create_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/data/model/direction.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_vehicle.dart';
-import 'package:tmoto_passenger/src/presentation/widget/instant_ride/widget_vehicle_pricing.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/networking_indicator.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/dashboard/instant_ride_cubit.dart';
+import 'package:passenger/src/business_logic/ride/create_ride_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/data/model/direction.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/data/provider/provider_vehicle.dart';
+import 'package:passenger/src/presentation/widget/instant_ride/widget_vehicle_pricing.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/networking_indicator.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 import 'package:uuid/uuid.dart';
 
 class InstantRidePricingPanel extends StatefulWidget {
@@ -49,8 +49,7 @@ class _InstantRidePricingPanelState extends State<InstantRidePricingPanel> {
   void initState() {
     final profileProvider = Provider.of<ProfileProvider>(context, listen: false);
     profile = profileProvider.profile!;
-    prioritySelection =
-        profile.gender == Gender.female ? RidePriority.femalePriority : RidePriority.male;
+    prioritySelection = profile.gender == Gender.female ? RidePriority.femalePriority : RidePriority.male;
     super.initState();
   }
 
@@ -62,8 +61,7 @@ class _InstantRidePricingPanelState extends State<InstantRidePricingPanel> {
         return SlidingUpPanel(
           color: theme.backgroundColor,
           panelSnapping: true,
-          borderRadius:
-              BorderRadius.only(topLeft: Radius.circular(24), topRight: Radius.circular(24)),
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(24), topRight: Radius.circular(24)),
           minHeight: profile.gender == Gender.female
               ? 342
               : widget.vehicle != null
@@ -95,8 +93,7 @@ class _InstantRidePricingPanelState extends State<InstantRidePricingPanel> {
                 visible: profile.gender == Gender.female,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 36.0, vertical: 4),
-                  child: Text("Choose gender priority",
-                      style: TextStyles.caption(context: context, color: theme.textColor)),
+                  child: Text("Choose gender priority", style: TextStyles.caption(context: context, color: theme.textColor)),
                 ),
               ),
               Visibility(
@@ -113,12 +110,10 @@ class _InstantRidePricingPanelState extends State<InstantRidePricingPanel> {
                       }
                     },
                     children: {
-                      RidePriority.female: Text("Female",
-                          style: TextStyles.caption(context: context, color: theme.textColor)),
-                      RidePriority.femalePriority: Text("Female Priority",
-                          style: TextStyles.caption(context: context, color: theme.textColor)),
-                      RidePriority.male: Text("Male",
-                          style: TextStyles.caption(context: context, color: theme.textColor)),
+                      RidePriority.female: Text("Female", style: TextStyles.caption(context: context, color: theme.textColor)),
+                      RidePriority.femalePriority:
+                          Text("Female Priority", style: TextStyles.caption(context: context, color: theme.textColor)),
+                      RidePriority.male: Text("Male", style: TextStyles.caption(context: context, color: theme.textColor)),
                     },
                     backgroundColor: theme.secondaryColor,
                     thumbColor: theme.backgroundColor,
@@ -158,9 +153,7 @@ class _InstantRidePricingPanelState extends State<InstantRidePricingPanel> {
                         itemBuilder: (BuildContext context, int index) {
                           final Vehicle vehicle = vehicles.elementAt(index);
                           return widget.direction == null
-                              ? Center(
-                                  child:
-                                      NetworkingIndicator(dimension: 20, color: theme.shadowColor))
+                              ? Center(child: NetworkingIndicator(dimension: 20, color: theme.shadowColor))
                               : VehiclePricing(
                                   vehicle: vehicle,
                                   selection: widget.vehicle,
@@ -187,15 +180,14 @@ class _InstantRidePricingPanelState extends State<InstantRidePricingPanel> {
                   child: BlocConsumer<CreateRideCubit, CreateRideState>(
                     listener: (_, state) {
                       if (state is CreateRideSuccess) {
-                        Navigator.of(context)
-                            .pushReplacementNamed(AppRouter.findDriver, arguments: state.data);
+                        Navigator.of(context).pushReplacementNamed(AppRouter.findDriver, arguments: state.data);
                       }
                     },
                     builder: (_, state) {
                       if (state is CreateRideError) {
                         return ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: theme.accentColor,
+                            backgroundColor: theme.accentColor,
                           ),
                           onPressed: () {
                             if (widget.vehicle != null && widget.direction != null) {
@@ -223,13 +215,12 @@ class _InstantRidePricingPanelState extends State<InstantRidePricingPanel> {
                             }
                           },
                           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: Text("Try again",
-                              style: TextStyles.title(context: context, color: theme.textColor)),
+                          child: Text("Try again", style: TextStyles.title(context: context, color: theme.textColor)),
                         );
                       } else if (state is CreateRideNetworking) {
                         return ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: theme.accentColor,
+                            backgroundColor: theme.accentColor,
                           ),
                           onPressed: () {},
                           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -238,7 +229,7 @@ class _InstantRidePricingPanelState extends State<InstantRidePricingPanel> {
                       } else if (state is CreateRideSuccess) {
                         return ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: theme.accentColor,
+                            backgroundColor: theme.accentColor,
                           ),
                           onPressed: () {},
                           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -247,7 +238,7 @@ class _InstantRidePricingPanelState extends State<InstantRidePricingPanel> {
                       } else {
                         return ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: theme.accentColor,
+                            backgroundColor: theme.accentColor,
                           ),
                           onPressed: () {
                             if (widget.vehicle != null && widget.direction != null) {
@@ -275,8 +266,7 @@ class _InstantRidePricingPanelState extends State<InstantRidePricingPanel> {
                             }
                           },
                           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: Text("Find ride",
-                              style: TextStyles.title(context: context, color: Colors.white)),
+                          child: Text("Find ride", style: TextStyles.title(context: context, color: Colors.white)),
                         );
                       }
                     },

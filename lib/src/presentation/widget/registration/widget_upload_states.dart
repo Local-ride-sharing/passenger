@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/upload/upload_cubit.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/business_logic/upload/upload_cubit.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class UploadStatesForRegistration extends StatelessWidget {
   final String reference;
@@ -24,7 +24,8 @@ class UploadStatesForRegistration extends StatelessWidget {
                 onPressed: () async {
                   BlocProvider.of<UploadCubit>(builderContext).upload(reference, path);
                 },
-                child: Text("Failed to upload".toUpperCase(), style: TextStyles.title(context: builderContext, color: theme.errorColor)),
+                child: Text("Failed to upload".toUpperCase(),
+                    style: TextStyles.title(context: builderContext, color: theme.errorColor)),
               );
             } else if (state is UploadNetworking) {
               return ElevatedButton(
@@ -38,7 +39,8 @@ class UploadStatesForRegistration extends StatelessWidget {
                 onPressed: () async {
                   BlocProvider.of<UploadCubit>(builderContext).upload(reference, path);
                 },
-                child: Text("Create account".toUpperCase(), style: TextStyles.title(context: builderContext, color: theme.textColor)),
+                child: Text("Create account".toUpperCase(),
+                    style: TextStyles.title(context: builderContext, color: theme.textColor)),
               );
             }
           },

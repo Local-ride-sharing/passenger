@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/presentation/shimmer/shimmer_icon.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/presentation/shimmer/shimmer_icon.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class ProfilePictureWidget extends StatelessWidget {
   final Passenger passenger;
@@ -38,7 +38,8 @@ class ProfilePictureWidget extends StatelessWidget {
                           width: 124,
                           height: 124,
                           placeholder: (context, url) => ShimmerIcon(124, 124),
-                          errorWidget: (context, url, error) => Center(child: Icon(Icons.person_rounded, color: theme.hintColor, size: 42)),
+                          errorWidget: (context, url, error) =>
+                              Center(child: Icon(Icons.person_rounded, color: theme.hintColor, size: 42)),
                         )
                       : Center(child: Icon(Icons.person_rounded, color: theme.hintColor, size: 42)),
                 ),

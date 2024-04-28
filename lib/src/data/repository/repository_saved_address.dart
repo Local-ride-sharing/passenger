@@ -1,8 +1,8 @@
 import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tmoto_passenger/src/data/model/saved_address.dart';
-import 'package:tmoto_passenger/src/data/service/service_save_address.dart';
+import 'package:passenger/src/data/model/saved_address.dart';
+import 'package:passenger/src/data/service/service_save_address.dart';
 
 class SavedAddressRepository {
   late SavedAddressService _service;

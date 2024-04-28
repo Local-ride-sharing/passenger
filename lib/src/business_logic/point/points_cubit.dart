@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-import 'package:tmoto_passenger/src/data/model/point.dart';
-import 'package:tmoto_passenger/src/data/repository/repository_point.dart';
+import 'package:passenger/src/data/model/point.dart';
+import 'package:passenger/src/data/repository/repository_point.dart';
 
 part 'points_state.dart';
 

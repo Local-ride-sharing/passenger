@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class AddressMenuForSavedAddress extends StatelessWidget {
   final AddressType type;
@@ -42,9 +42,7 @@ class AddressMenuForSavedAddress extends StatelessWidget {
                   : type == AddressType.Work
                       ? "Work"
                       : "Other",
-              style: TextStyles.caption(
-                  context: context,
-                  color: type == selection ? theme.primaryColor : theme.hintColor),
+              style: TextStyles.caption(context: context, color: type == selection ? theme.primaryColor : theme.hintColor),
               textAlign: TextAlign.center,
             ),
           ],

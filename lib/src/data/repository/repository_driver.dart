@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_driver.dart';
-import 'package:tmoto_passenger/src/data/service/service_driver.dart';
-import 'package:tmoto_passenger/src/utils/network_response.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/provider/provider_driver.dart';
+import 'package:passenger/src/data/service/service_driver.dart';
+import 'package:passenger/src/utils/network_response.dart';
 
 class DriverRepository {
   late DriverService _service;
@@ -13,7 +13,8 @@ class DriverRepository {
     _service = DriverService();
   }
 
-  Stream<DocumentSnapshot<Map<String, dynamic>>> monitorSingleDriver(String reference) => _service.monitorSingleDriver(reference);
+  Stream<DocumentSnapshot<Map<String, dynamic>>> monitorSingleDriver(String reference) =>
+      _service.monitorSingleDriver(reference);
 
   Future<NetworkResponse<Driver?>> findDriver(BuildContext context, String reference) async {
     final driverProvider = Provider.of<DriverProvider>(context, listen: false);

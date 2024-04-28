@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/model/passenger.dart';
 
 class ProfileProvider extends ChangeNotifier {
   Passenger? profile;

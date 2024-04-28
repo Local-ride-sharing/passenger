@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/point.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/point.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class RidePricingDirectionMapWidget extends StatefulWidget {
   final Point point;
@@ -31,7 +31,9 @@ class _RidePricingDirectionMapWidgetState extends State<RidePricingDirectionMapW
     super.initState();
     lastTheme = BlocProvider.of<ThemeCubit>(context).state.value;
 
-    DefaultAssetBundle.of(context).loadString('assets/map-${ThemeHelper(lastTheme).isDark ? "dark" : "light"}.json').then((string) {
+    DefaultAssetBundle.of(context)
+        .loadString('assets/map-${ThemeHelper(lastTheme).isDark ? "dark" : "light"}.json')
+        .then((string) {
       this.mapStyle = string;
     }).catchError((error) {});
 
@@ -89,8 +91,8 @@ class _RidePricingDirectionMapWidgetState extends State<RidePricingDirectionMapW
           }).catchError((error) {});
         }
         return GoogleMap(
-          initialCameraPosition:
-              CameraPosition(target: LatLng(widget.point.enDestination.latitude, widget.point.enDestination.longitude), zoom: 16),
+          initialCameraPosition: CameraPosition(
+              target: LatLng(widget.point.enDestination.latitude, widget.point.enDestination.longitude), zoom: 16),
           mapType: MapType.normal,
           indoorViewEnabled: false,
           onMapCreated: mapCreated,

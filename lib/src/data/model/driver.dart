@@ -1,6 +1,6 @@
-import 'package:tmoto_passenger/src/data/model/driver_location.dart';
-import 'package:tmoto_passenger/src/data/model/driver_vehicle.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
+import 'package:passenger/src/data/model/driver_location.dart';
+import 'package:passenger/src/data/model/driver_vehicle.dart';
+import 'package:passenger/src/utils/enums.dart';
 
 class Driver {
   late String reference;
@@ -15,8 +15,8 @@ class Driver {
   late String token;
   late Gender gender;
 
-  Driver(this.reference, this.name, this.nid, this.drivingLicense, this.phone, this.profilePicture, this.location, this.vehicle, this.isActive,
-      this.token, this.gender);
+  Driver(this.reference, this.name, this.nid, this.drivingLicense, this.phone, this.profilePicture, this.location, this.vehicle,
+      this.isActive, this.token, this.gender);
 
   Map<String, dynamic> get toMap => {
         "name": name,

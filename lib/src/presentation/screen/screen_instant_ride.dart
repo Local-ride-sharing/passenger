@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/dashboard/instant_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/location_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/direction_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/data/model/current_location.dart';
-import 'package:tmoto_passenger/src/data/model/direction.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/presentation/widget/instant_ride/widget_address_picker.dart';
-import 'package:tmoto_passenger/src/presentation/widget/instant_ride/widget_pricing_panel.dart';
-import 'package:tmoto_passenger/src/presentation/widget/ride_pricing_map/widget_ride_pricing_map.dart';
-import 'package:tmoto_passenger/src/presentation/widget/widget_basic_map.dart';
-import 'package:tmoto_passenger/src/utils/alert_distance_check.dart';
-import 'package:tmoto_passenger/src/utils/helper.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/dashboard/instant_ride_cubit.dart';
+import 'package:passenger/src/business_logic/location_cubit.dart';
+import 'package:passenger/src/business_logic/ride/direction_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/data/model/current_location.dart';
+import 'package:passenger/src/data/model/direction.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/presentation/widget/instant_ride/widget_address_picker.dart';
+import 'package:passenger/src/presentation/widget/instant_ride/widget_pricing_panel.dart';
+import 'package:passenger/src/presentation/widget/ride_pricing_map/widget_ride_pricing_map.dart';
+import 'package:passenger/src/presentation/widget/widget_basic_map.dart';
+import 'package:passenger/src/utils/alert_distance_check.dart';
+import 'package:passenger/src/utils/helper.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class InstantRideScreen extends StatefulWidget {
   final Address? address;
@@ -79,9 +79,7 @@ class _InstantRideScreenState extends State<InstantRideScreen> {
                             direction = dir;
                           });
                           if (dir.distance < 1.0) {
-                            showDialog(
-                                context: context,
-                                builder: (context) => DirectionDistanceCheckAlert());
+                            showDialog(context: context, builder: (context) => DirectionDistanceCheckAlert());
                           }
                         },
                       )
@@ -113,8 +111,7 @@ class _InstantRideScreenState extends State<InstantRideScreen> {
                         Expanded(
                           child: Container(
                             decoration: BoxDecoration(
-                                color: theme.errorColor.withOpacity(0.04),
-                                borderRadius: BorderRadius.circular(12)),
+                                color: theme.errorColor.withOpacity(0.04), borderRadius: BorderRadius.circular(12)),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -127,10 +124,7 @@ class _InstantRideScreenState extends State<InstantRideScreen> {
                                       pickup = address;
                                       if (pickup != null && destination != null) {
                                         BlocProvider.of<DirectionCubit>(context).findDirection(
-                                            pickup!.latitude,
-                                            pickup!.longitude,
-                                            destination!.latitude,
-                                            destination!.longitude);
+                                            pickup!.latitude, pickup!.longitude, destination!.latitude, destination!.longitude);
                                       }
                                     });
                                   },
@@ -148,10 +142,7 @@ class _InstantRideScreenState extends State<InstantRideScreen> {
                                       destination = address;
                                       if (pickup != null && destination != null) {
                                         BlocProvider.of<DirectionCubit>(context).findDirection(
-                                            pickup!.latitude,
-                                            pickup!.longitude,
-                                            destination!.latitude,
-                                            destination!.longitude);
+                                            pickup!.latitude, pickup!.longitude, destination!.latitude, destination!.longitude);
                                       }
                                     });
                                   },

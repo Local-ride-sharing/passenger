@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/repository/repository_profile.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/repository/repository_profile.dart';
 
 part 'profile_state.dart';
 

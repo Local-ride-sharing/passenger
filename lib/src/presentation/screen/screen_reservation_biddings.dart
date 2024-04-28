@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:tmoto_passenger/src/business_logic/count_down_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/driver/find_single_driver_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/reservation/bidding_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/reservation/update_reservation_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/bid.dart';
-import 'package:tmoto_passenger/src/data/model/reservation.dart';
-import 'package:tmoto_passenger/src/presentation/widget/profile/reservations/widget_countdown.dart';
-import 'package:tmoto_passenger/src/presentation/widget/profile/reservations/widget_driver.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/networking_indicator.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/count_down_cubit.dart';
+import 'package:passenger/src/business_logic/driver/find_single_driver_cubit.dart';
+import 'package:passenger/src/business_logic/reservation/bidding_cubit.dart';
+import 'package:passenger/src/business_logic/reservation/update_reservation_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/bid.dart';
+import 'package:passenger/src/data/model/reservation.dart';
+import 'package:passenger/src/presentation/widget/profile/reservations/widget_countdown.dart';
+import 'package:passenger/src/presentation/widget/profile/reservations/widget_driver.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/networking_indicator.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class ReservationBiddingScreen extends StatefulWidget {
   final String reference;
@@ -67,7 +67,8 @@ class _ReservationBiddingScreenState extends State<ReservationBiddingScreen> {
                         horizontalTitleGap: 0,
                         visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                         leading: Icon(Icons.tour_rounded, color: theme.textColor),
-                        title: Text(reservation.destination.label, style: TextStyles.body(context: context, color: theme.textColor)),
+                        title: Text(reservation.destination.label,
+                            style: TextStyles.body(context: context, color: theme.textColor)),
                       ),
                       ListTile(
                         dense: true,
@@ -75,18 +76,19 @@ class _ReservationBiddingScreenState extends State<ReservationBiddingScreen> {
                         visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                         leading: Icon(Icons.schedule_rounded, color: theme.textColor),
                         title: Text(
-                          DateFormat("h:mm a, dd MMM, yy").format(DateTime.fromMillisecondsSinceEpoch(reservation.departureTime)),
+                          DateFormat("h:mm a, dd MMM, yy")
+                              .format(DateTime.fromMillisecondsSinceEpoch(reservation.departureTime)),
                           style: TextStyles.body(context: context, color: theme.textColor),
                         ),
                         trailing: reservation.isRoundTrip
                             ? Chip(
-                          backgroundColor: theme.secondaryColor,
-                          visualDensity: VisualDensity.compact,
-                          padding: EdgeInsets.only(right: 8),
-                          labelPadding: EdgeInsets.zero,
-                          avatar: Icon(Icons.repeat_rounded, color: theme.textColor, size: 12),
-                          label: Text("round trip", style: TextStyles.caption(context: context, color: theme.textColor)),
-                        )
+                                backgroundColor: theme.secondaryColor,
+                                visualDensity: VisualDensity.compact,
+                                padding: EdgeInsets.only(right: 8),
+                                labelPadding: EdgeInsets.zero,
+                                avatar: Icon(Icons.repeat_rounded, color: theme.textColor, size: 12),
+                                label: Text("round trip", style: TextStyles.caption(context: context, color: theme.textColor)),
+                              )
                             : null,
                       ),
                       Visibility(
@@ -97,7 +99,8 @@ class _ReservationBiddingScreenState extends State<ReservationBiddingScreen> {
                           visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                           leading: Icon(Icons.restore_rounded, color: theme.textColor),
                           title: Text(
-                            DateFormat("h:mm a, dd MMM, yy").format(DateTime.fromMillisecondsSinceEpoch(reservation.returnTime ?? -1)),
+                            DateFormat("h:mm a, dd MMM, yy")
+                                .format(DateTime.fromMillisecondsSinceEpoch(reservation.returnTime ?? -1)),
                             style: TextStyles.body(context: context, color: theme.textColor),
                           ),
                         ),
@@ -114,19 +117,20 @@ class _ReservationBiddingScreenState extends State<ReservationBiddingScreen> {
                             ),
                             reservation.status == ReservationStatus.canceled
                                 ? Chip(
-                              backgroundColor: theme.errorColor,
-                              visualDensity: VisualDensity.compact,
-                              padding: EdgeInsets.only(right: 8),
-                              labelPadding: EdgeInsets.zero,
-                              label: Text("Canceled", style: TextStyles.caption(context: context, color: theme.backgroundColor)),
-                            )
+                                    backgroundColor: theme.errorColor,
+                                    visualDensity: VisualDensity.compact,
+                                    padding: EdgeInsets.only(right: 8),
+                                    labelPadding: EdgeInsets.zero,
+                                    label: Text("Canceled",
+                                        style: TextStyles.caption(context: context, color: theme.backgroundColor)),
+                                  )
                                 : MultiBlocProvider(
-                              providers: [
-                                BlocProvider(create: (context) => CountDownCubit()),
-                                BlocProvider(create: (context) => UpdateReservationCubit()),
-                              ],
-                              child: ReservationBiddingDeadlineCountdown(reservation: reservation),
-                            )
+                                    providers: [
+                                      BlocProvider(create: (context) => CountDownCubit()),
+                                      BlocProvider(create: (context) => UpdateReservationCubit()),
+                                    ],
+                                    child: ReservationBiddingDeadlineCountdown(reservation: reservation),
+                                  )
                           ],
                         ),
                       ),
@@ -148,7 +152,7 @@ class _ReservationBiddingScreenState extends State<ReservationBiddingScreen> {
                                     BlocProvider.of<UpdateReservationCubit>(context).update(newReservation);
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: theme.errorColor,
+                                    backgroundColor: theme.errorColor,
                                     elevation: 1,
                                     shadowColor: theme.hintColor,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -160,7 +164,7 @@ class _ReservationBiddingScreenState extends State<ReservationBiddingScreen> {
                                   child: NetworkingIndicator(dimension: 20, color: theme.backgroundColor),
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
-                                    primary: theme.errorColor,
+                                    backgroundColor: theme.errorColor,
                                     elevation: 1,
                                     shadowColor: theme.hintColor,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -173,7 +177,7 @@ class _ReservationBiddingScreenState extends State<ReservationBiddingScreen> {
                                       style: TextStyles.title(context: context, color: theme.backgroundColor)),
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
-                                    primary: theme.errorColor,
+                                    backgroundColor: theme.errorColor,
                                     elevation: 1,
                                     shadowColor: theme.hintColor,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -190,7 +194,7 @@ class _ReservationBiddingScreenState extends State<ReservationBiddingScreen> {
                                     BlocProvider.of<UpdateReservationCubit>(context).update(newReservation);
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    primary: theme.errorColor,
+                                    backgroundColor: theme.errorColor,
                                     elevation: 1,
                                     shadowColor: theme.hintColor,
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

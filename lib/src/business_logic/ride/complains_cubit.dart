@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-import 'package:tmoto_passenger/src/data/model/complains.dart';
-import 'package:tmoto_passenger/src/data/repository/repository_complains.dart';
+import 'package:passenger/src/data/model/complains.dart';
+import 'package:passenger/src/data/repository/repository_complains.dart';
 
 part 'complains_state.dart';
 

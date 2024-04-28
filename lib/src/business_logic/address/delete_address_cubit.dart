@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:tmoto_passenger/src/data/repository/repository_saved_address.dart';
+import 'package:passenger/src/data/repository/repository_saved_address.dart';
 
 part 'delete_address_state.dart';
 

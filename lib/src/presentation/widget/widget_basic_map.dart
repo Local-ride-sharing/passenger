@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:tmoto_passenger/src/business_logic/location_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/current_location.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/location_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/current_location.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class BasicMapWidget extends StatefulWidget {
   @override
@@ -50,9 +50,7 @@ class _BasicMapWidgetState extends State<BasicMapWidget> {
         final theme = ThemeHelper(state.value);
         if (lastTheme != state.value) {
           lastTheme = state.value;
-          DefaultAssetBundle.of(context)
-              .loadString('assets/map-${theme.isDark ? "dark" : "light"}.json')
-              .then((string) {
+          DefaultAssetBundle.of(context).loadString('assets/map-${theme.isDark ? "dark" : "light"}.json').then((string) {
             this.mapStyle = string;
             if (mapController != null) {
               setState(() {
@@ -67,8 +65,7 @@ class _BasicMapWidgetState extends State<BasicMapWidget> {
               currentLocation = LatLng(state.latitude, state.longitude);
 
               if (mapController != null) {
-                mapController?.animateCamera(
-                    CameraUpdate.newLatLng(LatLng(state.latitude, state.longitude)));
+                mapController?.animateCamera(CameraUpdate.newLatLng(LatLng(state.latitude, state.longitude)));
               }
             });
           },
@@ -76,8 +73,7 @@ class _BasicMapWidgetState extends State<BasicMapWidget> {
             final CurrentLocation loc = state;
 
             return GoogleMap(
-              initialCameraPosition:
-                  CameraPosition(target: LatLng(loc.latitude, loc.longitude), zoom: 16),
+              initialCameraPosition: CameraPosition(target: LatLng(loc.latitude, loc.longitude), zoom: 16),
               mapType: MapType.normal,
               indoorViewEnabled: false,
               onMapCreated: mapCreated,

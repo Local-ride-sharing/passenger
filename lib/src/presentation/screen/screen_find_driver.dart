@@ -4,26 +4,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/location_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/create_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/find_driver_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/single_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/current_location.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_vehicle.dart';
-import 'package:tmoto_passenger/src/presentation/inherited/inherited_ride.dart';
-import 'package:tmoto_passenger/src/presentation/widget/find_driver/widget_driver.dart';
-import 'package:tmoto_passenger/src/presentation/widget/find_driver/widget_networking.dart';
-import 'package:tmoto_passenger/src/presentation/widget/find_driver/widget_no_driver.dart';
-import 'package:tmoto_passenger/src/presentation/widget/widget_back_button_find_driver.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/helper.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/location_cubit.dart';
+import 'package:passenger/src/business_logic/ride/create_ride_cubit.dart';
+import 'package:passenger/src/business_logic/ride/find_driver_cubit.dart';
+import 'package:passenger/src/business_logic/ride/single_ride_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/current_location.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/data/provider/provider_vehicle.dart';
+import 'package:passenger/src/presentation/inherited/inherited_ride.dart';
+import 'package:passenger/src/presentation/widget/find_driver/widget_driver.dart';
+import 'package:passenger/src/presentation/widget/find_driver/widget_networking.dart';
+import 'package:passenger/src/presentation/widget/find_driver/widget_no_driver.dart';
+import 'package:passenger/src/presentation/widget/widget_back_button_find_driver.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/helper.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class FindDriverScreen extends StatefulWidget {
   @override
@@ -68,18 +68,14 @@ class _FindDriverScreenState extends State<FindDriverScreen> {
           BlocProvider.of<FindDriverCubit>(context).findDrivers(ride, vehicle);
 
           try {
-            BitmapDescriptor.fromAssetImage(
-                    ImageConfiguration(size: Size(64, 64)), 'images/pickup.png')
-                .then((d) {
+            BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(64, 64)), 'images/pickup.png').then((d) {
               pickupMarkerIcon = d;
             });
           } catch (error) {
             pickupMarkerIcon = null;
           }
           try {
-            BitmapDescriptor.fromAssetImage(
-                    ImageConfiguration(size: Size(64, 64)), 'images/destination.png')
-                .then((d) {
+            BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(64, 64)), 'images/destination.png').then((d) {
               destinationMarkerIcon = d;
             });
           } catch (error) {
@@ -158,9 +154,7 @@ class _FindDriverScreenState extends State<FindDriverScreen> {
         final theme = ThemeHelper(state.value);
         if (lastTheme != state.value) {
           lastTheme = state.value;
-          DefaultAssetBundle.of(context)
-              .loadString('assets/map-${theme.isDark ? "dark" : "light"}.json')
-              .then((string) {
+          DefaultAssetBundle.of(context).loadString('assets/map-${theme.isDark ? "dark" : "light"}.json').then((string) {
             this.mapStyle = string;
             if (mapController != null) {
               setState(() {
@@ -177,8 +171,8 @@ class _FindDriverScreenState extends State<FindDriverScreen> {
                 listener: (context, state) {
                   if (state is SingleRideSuccess) {
                     if (state.data.rideCurrentStatus == RideCurrentStatus.accepted) {
-                      Navigator.of(context).pushReplacementNamed(AppRouter.driverArrivalTracking,
-                          arguments: state.data.reference);
+                      Navigator.of(context)
+                          .pushReplacementNamed(AppRouter.driverArrivalTracking, arguments: state.data.reference);
                     }
                   }
                 },
@@ -192,9 +186,8 @@ class _FindDriverScreenState extends State<FindDriverScreen> {
                         left: 0,
                         bottom: 166,
                         child: GoogleMap(
-                          initialCameraPosition: CameraPosition(
-                              target: LatLng(ride.destination.latitude, ride.destination.longitude),
-                              zoom: 16),
+                          initialCameraPosition:
+                              CameraPosition(target: LatLng(ride.destination.latitude, ride.destination.longitude), zoom: 16),
                           mapType: MapType.normal,
                           indoorViewEnabled: false,
                           onMapCreated: mapCreated,
@@ -215,16 +208,13 @@ class _FindDriverScreenState extends State<FindDriverScreen> {
                             ),
                             Marker(
                               markerId: MarkerId(ride.destination.label),
-                              position:
-                                  LatLng(ride.destination.latitude, ride.destination.longitude),
+                              position: LatLng(ride.destination.latitude, ride.destination.longitude),
                               icon: destinationMarkerIcon ?? BitmapDescriptor.defaultMarker,
                             ),
                           ].toSet(),
                           onTap: (loc) {
-                            final List<double> latitudes =
-                                polylineCoordinates.map((e) => e.latitude).toList();
-                            final List<double> longitudes =
-                                polylineCoordinates.map((e) => e.longitude).toList();
+                            final List<double> latitudes = polylineCoordinates.map((e) => e.latitude).toList();
+                            final List<double> longitudes = polylineCoordinates.map((e) => e.longitude).toList();
 
                             latitudes.sort((a, b) => a.compareTo(b));
 
@@ -241,8 +231,7 @@ class _FindDriverScreenState extends State<FindDriverScreen> {
                             );
                             Future.delayed(Duration(milliseconds: 1), () {
                               setState(() {
-                                mapController
-                                    ?.animateCamera(CameraUpdate.newLatLngBounds(bounds, 54));
+                                mapController?.animateCamera(CameraUpdate.newLatLngBounds(bounds, 54));
                               });
                             });
                           },
@@ -263,9 +252,7 @@ class _FindDriverScreenState extends State<FindDriverScreen> {
                           },
                           builder: (_, state) {
                             if (state is FindDriverError) {
-                              return Text(state.error,
-                                  style:
-                                      TextStyles.body(context: context, color: theme.errorColor));
+                              return Text(state.error, style: TextStyles.body(context: context, color: theme.errorColor));
                             } else if (state is FindDriverNetworking) {
                               return FindDriverNetworkingWidget();
                             } else if (state is FindDriverSuccess) {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class GenderStep extends StatefulWidget {
   final Gender gender;
@@ -52,8 +52,7 @@ class _GenderStepState extends State<GenderStep> {
                   selection == Gender.male ? MdiIcons.radioboxMarked : MdiIcons.radioboxBlank,
                   color: selection == Gender.male ? theme.primaryColor : theme.hintColor,
                 ),
-                title: Text("Male",
-                    style: TextStyles.subTitle(context: context, color: theme.textColor)),
+                title: Text("Male", style: TextStyles.subTitle(context: context, color: theme.textColor)),
                 onTap: () {
                   setState(() {
                     selection = Gender.male;
@@ -68,8 +67,7 @@ class _GenderStepState extends State<GenderStep> {
                   selection == Gender.female ? MdiIcons.radioboxMarked : MdiIcons.radioboxBlank,
                   color: selection == Gender.female ? theme.primaryColor : theme.hintColor,
                 ),
-                title: Text("Female",
-                    style: TextStyles.subTitle(context: context, color: theme.textColor)),
+                title: Text("Female", style: TextStyles.subTitle(context: context, color: theme.textColor)),
                 onTap: () {
                   setState(() {
                     selection = Gender.female;
@@ -84,8 +82,7 @@ class _GenderStepState extends State<GenderStep> {
                   selection == Gender.other ? MdiIcons.radioboxMarked : MdiIcons.radioboxBlank,
                   color: selection == Gender.other ? theme.primaryColor : theme.hintColor,
                 ),
-                title: Text("Other",
-                    style: TextStyles.subTitle(context: context, color: theme.textColor)),
+                title: Text("Other", style: TextStyles.subTitle(context: context, color: theme.textColor)),
                 onTap: () {
                   setState(() {
                     selection = Gender.other;

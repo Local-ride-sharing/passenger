@@ -1,5 +1,5 @@
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/utils/enums.dart';
 
 class Ride {
   late String reference;

@@ -3,16 +3,16 @@ import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/login/existence_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/passenger/profile_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/presentation/widget/initialize_states/widget_initialise_existence.dart';
-import 'package:tmoto_passenger/src/presentation/widget/initialize_states/widget_initialise_profile.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/helper.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/login/existence_cubit.dart';
+import 'package:passenger/src/business_logic/passenger/profile_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/presentation/widget/initialize_states/widget_initialise_existence.dart';
+import 'package:passenger/src/presentation/widget/initialize_states/widget_initialise_profile.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/helper.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class InitialiseInformationScreen extends StatefulWidget {
   @override
@@ -66,9 +66,7 @@ class _InitialiseInformationScreenState extends State<InitialiseInformationScree
                           } else {
                             Navigator.of(context).pushReplacementNamed(AppRouter.registration);
                           }
-                        } else {
-
-                        }
+                        } else {}
                       },
                     ),
                     BlocListener<ProfileCubit, ProfileState>(
@@ -84,8 +82,7 @@ class _InitialiseInformationScreenState extends State<InitialiseInformationScree
                             ///Todo: show alert dialog for in-active user
                           }
                         } else if (state is ProfileError) {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(getErrorSnackBar(context, state.error));
+                          ScaffoldMessenger.of(context).showSnackBar(getErrorSnackBar(context, state.error));
                         }
                       },
                     ),

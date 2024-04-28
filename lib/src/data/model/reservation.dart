@@ -1,7 +1,7 @@
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/data/model/bid.dart';
-import 'package:tmoto_passenger/src/data/model/direction.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/data/model/bid.dart';
+import 'package:passenger/src/data/model/direction.dart';
+import 'package:passenger/src/utils/enums.dart';
 
 class Reservation {
   late String reference;
@@ -76,14 +76,11 @@ class Reservation {
       biddingDeadline: map['biddingDeadline'] as int,
       direction: Direction.fromMap(map['direction']),
       status: ReservationStatus.values.elementAt(map['status']),
-      bids: map['bids'] == null
-          ? []
-          : List<Map<String, dynamic>>.from(map['bids']).map((e) => Bid.fromMap(e)).toList(),
+      bids: map['bids'] == null ? [] : List<Map<String, dynamic>>.from(map['bids']).map((e) => Bid.fromMap(e)).toList(),
       blackListed: map['blackListed'] == null
           ? []
           : List<Map<String, dynamic>>.from(map['blackListed']).map((e) => Bid.fromMap(e)).toList(),
-      primarySelection:
-          map['primarySelection'] == null ? null : Bid.fromMap(map['primarySelection']),
+      primarySelection: map['primarySelection'] == null ? null : Bid.fromMap(map['primarySelection']),
       selected: map['selected'] == null ? null : Bid.fromMap(map['selected']),
       closed: map['closed'],
       commission: map["commission"] ?? 0,

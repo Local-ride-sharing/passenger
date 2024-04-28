@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
-import 'package:tmoto_passenger/src/presentation/shimmer/shimmer_icon.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/presentation/shimmer/shimmer_icon.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class VehicleMenu extends StatelessWidget {
   final Vehicle vehicle;
@@ -46,14 +46,13 @@ class VehicleMenu extends StatelessWidget {
                       fit: BoxFit.contain,
                       width: 36,
                       height: 24,
-                      placeholderBuilder: (_) => ShimmerIcon(MediaQuery.of(context).size.width * .1,
-                          MediaQuery.of(context).size.width * .1),
+                      placeholderBuilder: (_) =>
+                          ShimmerIcon(MediaQuery.of(context).size.width * .1, MediaQuery.of(context).size.width * .1),
                     ),
                   ),
                   SizedBox(height: 8),
                   Text(vehicle.enName,
-                      style: TextStyles.caption(context: context, color: theme.textColor)
-                          .copyWith(fontSize: 10))
+                      style: TextStyles.caption(context: context, color: theme.textColor).copyWith(fontSize: 10))
                 ],
               ),
             ),

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/point/points_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/create_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/direction.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/model/point.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/presentation/widget/point_ride/pricing/widget_pricing_widget.dart';
-import 'package:tmoto_passenger/src/presentation/widget/point_ride/widget_point_dropdown.dart';
-import 'package:tmoto_passenger/src/presentation/widget/ride_pricing_map/widget_ride_pricing_map.dart';
-import 'package:tmoto_passenger/src/presentation/widget/widget_basic_map.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/point/points_cubit.dart';
+import 'package:passenger/src/business_logic/ride/create_ride_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/direction.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/model/point.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/presentation/widget/point_ride/pricing/widget_pricing_widget.dart';
+import 'package:passenger/src/presentation/widget/point_ride/widget_point_dropdown.dart';
+import 'package:passenger/src/presentation/widget/ride_pricing_map/widget_ride_pricing_map.dart';
+import 'package:passenger/src/presentation/widget/widget_basic_map.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 import 'package:uuid/uuid.dart';
 
 class PointRideScreen extends StatefulWidget {
@@ -133,8 +133,7 @@ class _PointRideScreenState extends State<PointRideScreen> {
                               child: BlocConsumer<CreateRideCubit, CreateRideState>(
                                 listener: (_, state) {
                                   if (state is CreateRideSuccess) {
-                                    Navigator.of(context).pushReplacementNamed(AppRouter.findDriver,
-                                        arguments: state.data);
+                                    Navigator.of(context).pushReplacementNamed(AppRouter.findDriver, arguments: state.data);
                                   }
                                 },
                                 builder: (_, state) {
@@ -142,7 +141,7 @@ class _PointRideScreenState extends State<PointRideScreen> {
                                     return Container(
                                       margin: EdgeInsets.all(8),
                                       child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(primary: theme.textColor),
+                                        style: ElevatedButton.styleFrom(backgroundColor: theme.textColor),
                                         onPressed: selection != null
                                             ? () {
                                                 final Uuid uuid = Uuid();
@@ -160,33 +159,28 @@ class _PointRideScreenState extends State<PointRideScreen> {
                                                   rideType: RideType.pointToPoint,
                                                   rideCurrentStatus: RideCurrentStatus.searching,
                                                 );
-                                                BlocProvider.of<CreateRideCubit>(context)
-                                                    .createRide(ride);
+                                                BlocProvider.of<CreateRideCubit>(context).createRide(ride);
                                               }
                                             : null,
                                         clipBehavior: Clip.antiAliasWithSaveLayer,
                                         child: Text("Try again",
-                                            style: TextStyles.title(
-                                                context: context, color: theme.backgroundColor)),
+                                            style: TextStyles.title(context: context, color: theme.backgroundColor)),
                                       ),
                                     );
                                   } else if (state is CreateRideNetworking) {
                                     return Container(
                                       margin: EdgeInsets.all(8),
                                       child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                            primary: theme.backgroundColor),
+                                        style: ElevatedButton.styleFrom(backgroundColor: theme.backgroundColor),
                                         onPressed: () {},
                                         clipBehavior: Clip.antiAliasWithSaveLayer,
                                         child: Center(
-                                            child: CircularProgressIndicator(
-                                                valueColor: AlwaysStoppedAnimation(Colors.blue))),
+                                            child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.blue))),
                                       ),
                                     );
                                   } else if (state is CreateRideSuccess) {
                                     return ElevatedButton(
-                                      style:
-                                          ElevatedButton.styleFrom(primary: theme.backgroundColor),
+                                      style: ElevatedButton.styleFrom(backgroundColor: theme.backgroundColor),
                                       onPressed: () {},
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
                                       child: Center(child: Icon(Icons.done_outline_outlined)),
@@ -196,7 +190,7 @@ class _PointRideScreenState extends State<PointRideScreen> {
                                       margin: EdgeInsets.all(8),
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
-                                          primary: theme.accentColor,
+                                          backgroundColor: theme.accentColor,
                                         ),
                                         onPressed: selection != null
                                             ? () {
@@ -215,14 +209,12 @@ class _PointRideScreenState extends State<PointRideScreen> {
                                                   rideType: RideType.pointToPoint,
                                                   rideCurrentStatus: RideCurrentStatus.searching,
                                                 );
-                                                BlocProvider.of<CreateRideCubit>(context)
-                                                    .createRide(ride);
+                                                BlocProvider.of<CreateRideCubit>(context).createRide(ride);
                                               }
                                             : null,
                                         clipBehavior: Clip.antiAliasWithSaveLayer,
                                         child: Text("Find ride",
-                                            style: TextStyles.title(
-                                                context: context, color: theme.backgroundColor)),
+                                            style: TextStyles.title(context: context, color: theme.backgroundColor)),
                                       ),
                                     );
                                   }

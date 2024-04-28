@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:meta/meta.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/data/repository/repository_my_trips.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/repository/repository_my_trips.dart';
 
 part 'my_trips_list_state.dart';
 
@@ -34,12 +34,9 @@ class MyTripsCubit extends Cubit<MyTripsState> {
       List<Ride> completed = [];
       List<Ride> canceled = [];
       completed = rides
-          .where((element) =>
-              element.startAt != null && element.endAt != null && element.driverReference != null)
+          .where((element) => element.startAt != null && element.endAt != null && element.driverReference != null)
           .toList();
-      canceled = rides
-          .where((element) => element.isCanceled == null || element.isCanceled == true)
-          .toList();
+      canceled = rides.where((element) => element.isCanceled == null || element.isCanceled == true).toList();
       emit(MyTripsSuccess(completed: completed, canceled: canceled));
     } catch (error) {
       emit(MyTripsError(error: error.toString()));

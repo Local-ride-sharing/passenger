@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:tmoto_passenger/src/data/model/saved_address.dart';
-import 'package:tmoto_passenger/src/data/repository/repository_saved_address.dart';
+import 'package:passenger/src/data/model/saved_address.dart';
+import 'package:passenger/src/data/repository/repository_saved_address.dart';
 
 part 'create_address_state.dart';
 

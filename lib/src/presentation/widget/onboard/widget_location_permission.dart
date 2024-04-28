@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart' as permissionHandler;
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class LocationPermissionWidget extends StatelessWidget {
   final Function onApproved;
@@ -51,19 +51,16 @@ class LocationPermissionWidget extends StatelessWidget {
                     ].request();
 
                     if (result[permissionHandler.Permission.location] == permissionHandler.PermissionStatus.granted ||
-                        result[permissionHandler.Permission.locationAlways] ==
-                            permissionHandler.PermissionStatus.granted ||
-                        result[permissionHandler.Permission.locationWhenInUse] ==
-                            permissionHandler.PermissionStatus.granted) {
+                        result[permissionHandler.Permission.locationAlways] == permissionHandler.PermissionStatus.granted ||
+                        result[permissionHandler.Permission.locationWhenInUse] == permissionHandler.PermissionStatus.granted) {
                       await Location.instance.requestService();
                       await Location.instance.requestPermission();
-                      await Location.instance
-                          .changeSettings(accuracy: LocationAccuracy.high, interval: 0, distanceFilter: 0);
+                      await Location.instance.changeSettings(accuracy: LocationAccuracy.high, interval: 0, distanceFilter: 0);
                       onApproved();
                     }
                   },
-                  child: Text("Grant permission".toUpperCase(),
-                      style: TextStyles.title(context: context, color: theme.textColor)),
+                  child:
+                      Text("Grant permission".toUpperCase(), style: TextStyles.title(context: context, color: theme.textColor)),
                 ),
               ),
             ),

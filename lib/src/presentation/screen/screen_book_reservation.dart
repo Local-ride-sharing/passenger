@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/dashboard/reservation_vehicle_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/reservation/create_reservation_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/direction_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/data/model/direction.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/model/reservation.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/presentation/widget/instant_ride/widget_address_text_field_for_address_picker.dart';
-import 'package:tmoto_passenger/src/presentation/widget/widget_vehicle_dropdown.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/networking_indicator.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/dashboard/reservation_vehicle_cubit.dart';
+import 'package:passenger/src/business_logic/reservation/create_reservation_cubit.dart';
+import 'package:passenger/src/business_logic/ride/direction_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/data/model/direction.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/model/reservation.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/presentation/widget/instant_ride/widget_address_text_field_for_address_picker.dart';
+import 'package:passenger/src/presentation/widget/widget_vehicle_dropdown.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/networking_indicator.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class BookReservationScreen extends StatefulWidget {
   final bool? isAmbulance;
@@ -71,8 +71,7 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
       return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,
-          title: Text("Quick reservation",
-              style: TextStyles.title(context: context, color: theme.textColor)),
+          title: Text("Quick reservation", style: TextStyles.title(context: context, color: theme.textColor)),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -86,8 +85,7 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                 listener: (_, state) {
                   if (state is ReservationVehicleSuccess && (widget.isAmbulance ?? false)) {
                     setState(() {
-                      vehicle = state.data.firstWhere(
-                          (element) => element.enName.toLowerCase().contains("ambulance"));
+                      vehicle = state.data.firstWhere((element) => element.enName.toLowerCase().contains("ambulance"));
                     });
                   }
                 },
@@ -127,8 +125,7 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                 },
               ),
               const SizedBox(height: 16),
-              Text("Destination",
-                  style: TextStyles.caption(context: context, color: theme.hintColor)),
+              Text("Destination", style: TextStyles.caption(context: context, color: theme.hintColor)),
               const SizedBox(height: 4),
               AddressTextFieldForAddressPicker(
                 icon: Icons.tour_rounded,
@@ -144,8 +141,7 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Departure",
-                      style: TextStyles.body(context: context, color: theme.textColor)),
+                  Text("Departure", style: TextStyles.body(context: context, color: theme.textColor)),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -172,8 +168,8 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                             color: theme.secondaryColor,
                             borderRadius: BorderRadius.circular(16),
                           ),
-                          child: Text(startTime.format(context),
-                              style: TextStyles.body(context: context, color: theme.textColor)),
+                          child:
+                              Text(startTime.format(context), style: TextStyles.body(context: context, color: theme.textColor)),
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -182,8 +178,7 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                           final DateTime? date = await showDatePicker(
                             context: context,
                             initialDate: startDate,
-                            firstDate: DateTime.now()
-                                .add(Duration(days: (widget.isAmbulance ?? false) ? 0 : 3)),
+                            firstDate: DateTime.now().add(Duration(days: (widget.isAmbulance ?? false) ? 0 : 3)),
                             lastDate: DateTime.now().add(Duration(days: 60)),
                             initialEntryMode: DatePickerEntryMode.calendarOnly,
                           );
@@ -229,8 +224,7 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Return",
-                        style: TextStyles.body(context: context, color: theme.textColor)),
+                    Text("Return", style: TextStyles.body(context: context, color: theme.textColor)),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -257,8 +251,8 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                               color: theme.secondaryColor,
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            child: Text(endTime.format(context),
-                                style: TextStyles.body(context: context, color: theme.textColor)),
+                            child:
+                                Text(endTime.format(context), style: TextStyles.body(context: context, color: theme.textColor)),
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -302,9 +296,8 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                 horizontalTitleGap: 0,
                 contentPadding: EdgeInsets.zero,
                 visualDensity: VisualDensity(horizontal: 0, vertical: 0),
-                leading: Icon(
-                    isRoundTrip ? Icons.check_circle_rounded : Icons.check_circle_outline_rounded,
-                    color: theme.textColor),
+                leading:
+                    Icon(isRoundTrip ? Icons.check_circle_rounded : Icons.check_circle_outline_rounded, color: theme.textColor),
                 title: Text("Round trip ${!isRoundTrip ? "?" : ""}",
                     style: TextStyles.body(context: context, color: theme.textColor)),
                 onTap: () {
@@ -319,8 +312,7 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Bidding deadline",
-                      style: TextStyles.body(context: context, color: theme.textColor)),
+                  Text("Bidding deadline", style: TextStyles.body(context: context, color: theme.textColor)),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -395,12 +387,12 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                   listener: (_, state) {
                     if (state is DirectionSuccess) {
                       final Direction direction = state.data;
-                      final DateTime departureTime = DateTime(startDate.year, startDate.month,
-                          startDate.day, startTime.hour, startTime.minute);
-                      final DateTime returnTime = DateTime(
-                          endDate.year, endDate.month, endDate.day, endTime.hour, endTime.minute);
-                      final DateTime deadline = DateTime(deadlineDate.year, deadlineDate.month,
-                          deadlineDate.day, deadlineTime.hour, deadlineTime.minute);
+                      final DateTime departureTime =
+                          DateTime(startDate.year, startDate.month, startDate.day, startTime.hour, startTime.minute);
+                      final DateTime returnTime =
+                          DateTime(endDate.year, endDate.month, endDate.day, endTime.hour, endTime.minute);
+                      final DateTime deadline = DateTime(
+                          deadlineDate.year, deadlineDate.month, deadlineDate.day, deadlineTime.hour, deadlineTime.minute);
                       final Reservation reservation = Reservation(
                         reference: "",
                         vehicleReference: vehicle?.reference ?? "",
@@ -425,12 +417,12 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                       return ElevatedButton(
                         onPressed: () {
                           if (pickup != null && destination != null) {
-                            BlocProvider.of<DirectionCubit>(context).findDirection(pickup!.latitude,
-                                pickup!.longitude, destination!.latitude, destination!.longitude);
+                            BlocProvider.of<DirectionCubit>(context).findDirection(
+                                pickup!.latitude, pickup!.longitude, destination!.latitude, destination!.longitude);
                           }
                         },
-                        child: Text("Try again".toUpperCase(),
-                            style: TextStyles.title(context: context, color: theme.textColor)),
+                        child:
+                            Text("Try again".toUpperCase(), style: TextStyles.title(context: context, color: theme.textColor)),
                       );
                     } else if (state is DirectionNetworking) {
                       return ElevatedButton(
@@ -449,24 +441,16 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                           if (state is CreateReservationError) {
                             return ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: theme.accentColor,
+                                backgroundColor: theme.accentColor,
                               ),
                               onPressed: () {
                                 if (pickup != null && destination != null) {
                                   final DateTime departureTime = DateTime(
-                                      startDate.year,
-                                      startDate.month,
-                                      startDate.day,
-                                      startTime.hour,
-                                      startTime.minute);
-                                  final DateTime returnTime = DateTime(endDate.year, endDate.month,
-                                      endDate.day, endTime.hour, endTime.minute);
-                                  final DateTime deadline = DateTime(
-                                      deadlineDate.year,
-                                      deadlineDate.month,
-                                      deadlineDate.day,
-                                      deadlineTime.hour,
-                                      deadlineTime.minute);
+                                      startDate.year, startDate.month, startDate.day, startTime.hour, startTime.minute);
+                                  final DateTime returnTime =
+                                      DateTime(endDate.year, endDate.month, endDate.day, endTime.hour, endTime.minute);
+                                  final DateTime deadline = DateTime(deadlineDate.year, deadlineDate.month, deadlineDate.day,
+                                      deadlineTime.hour, deadlineTime.minute);
                                   final Reservation reservation = Reservation(
                                     reference: "",
                                     vehicleReference: vehicle?.reference ?? "",
@@ -483,18 +467,16 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                                     blackListed: [],
                                     commission: 0,
                                   );
-                                  BlocProvider.of<CreateReservationCubit>(context)
-                                      .create(reservation);
+                                  BlocProvider.of<CreateReservationCubit>(context).create(reservation);
                                 }
                               },
                               child: Text("Try again".toUpperCase(),
-                                  style:
-                                      TextStyles.title(context: context, color: theme.textColor)),
+                                  style: TextStyles.title(context: context, color: theme.textColor)),
                             );
                           } else if (state is CreateReservationNetworking) {
                             return ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: theme.accentColor,
+                                backgroundColor: theme.accentColor,
                               ),
                               onPressed: () {},
                               child: NetworkingIndicator(dimension: 20, color: Colors.white),
@@ -502,7 +484,7 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                           } else if (state is CreateReservationSuccess) {
                             return ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: theme.accentColor,
+                                backgroundColor: theme.accentColor,
                               ),
                               onPressed: () {},
                               child: Icon(Icons.done_outline_rounded, color: theme.accentColor),
@@ -510,24 +492,16 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                           } else {
                             return ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                primary: theme.accentColor,
+                                backgroundColor: theme.accentColor,
                               ),
                               onPressed: () {
                                 if (pickup != null && destination != null) {
                                   final DateTime departureTime = DateTime(
-                                      startDate.year,
-                                      startDate.month,
-                                      startDate.day,
-                                      startTime.hour,
-                                      startTime.minute);
-                                  final DateTime returnTime = DateTime(endDate.year, endDate.month,
-                                      endDate.day, endTime.hour, endTime.minute);
-                                  final DateTime deadline = DateTime(
-                                      deadlineDate.year,
-                                      deadlineDate.month,
-                                      deadlineDate.day,
-                                      deadlineTime.hour,
-                                      deadlineTime.minute);
+                                      startDate.year, startDate.month, startDate.day, startTime.hour, startTime.minute);
+                                  final DateTime returnTime =
+                                      DateTime(endDate.year, endDate.month, endDate.day, endTime.hour, endTime.minute);
+                                  final DateTime deadline = DateTime(deadlineDate.year, deadlineDate.month, deadlineDate.day,
+                                      deadlineTime.hour, deadlineTime.minute);
                                   final Reservation reservation = Reservation(
                                     reference: "",
                                     vehicleReference: vehicle?.reference ?? "",
@@ -544,14 +518,12 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                                     blackListed: [],
                                     commission: 0,
                                   );
-                                  BlocProvider.of<CreateReservationCubit>(context)
-                                      .create(reservation);
+                                  BlocProvider.of<CreateReservationCubit>(context).create(reservation);
                                   Navigator.of(context).pushNamed(AppRouter.reservationHistory);
                                 }
                               },
                               child: Text("Book now".toUpperCase(),
-                                  style:
-                                      TextStyles.title(context: context, color: theme.textColor)),
+                                  style: TextStyles.title(context: context, color: theme.textColor)),
                             );
                           }
                         },
@@ -559,17 +531,16 @@ class _ReservationBookingScreenState extends State<BookReservationScreen> {
                     } else {
                       return ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: theme.accentColor,
+                          backgroundColor: theme.accentColor,
                         ),
                         onPressed: () {
                           if (pickup != null && destination != null) {
-                            BlocProvider.of<DirectionCubit>(context).findDirection(pickup!.latitude,
-                                pickup!.longitude, destination!.latitude, destination!.longitude);
+                            BlocProvider.of<DirectionCubit>(context).findDirection(
+                                pickup!.latitude, pickup!.longitude, destination!.latitude, destination!.longitude);
                           }
                         },
                         child: Text("Book now".toUpperCase(),
-                            style:
-                                TextStyles.title(context: context, color: theme.backgroundColor)),
+                            style: TextStyles.title(context: context, color: theme.backgroundColor)),
                       );
                     }
                   },

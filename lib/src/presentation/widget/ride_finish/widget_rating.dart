@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/complains_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/ride_rating_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/complains.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/ride/complains_cubit.dart';
+import 'package:passenger/src/business_logic/ride/ride_rating_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/complains.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class RideFinishRatingWidget extends StatefulWidget {
   final Ride ride;
@@ -77,7 +77,8 @@ class _RideFinishRatingWidgetState extends State<RideFinishRatingWidget> {
                 SizedBox(height: 16),
                 Divider(color: theme.hintColor),
                 SizedBox(height: 16),
-                Text("Share your complains, if you have any", style: TextStyles.caption(context: context, color: theme.hintColor)),
+                Text("Share your complains, if you have any",
+                    style: TextStyles.caption(context: context, color: theme.hintColor)),
                 SizedBox(height: 8),
                 BlocBuilder<ComplainsCubit, ComplainsState>(
                   builder: (context, state) {
@@ -98,7 +99,8 @@ class _RideFinishRatingWidgetState extends State<RideFinishRatingWidget> {
                                   e.enComplain,
                                   style: TextStyles.body(
                                       context: context,
-                                      color: complainSelections.contains(e.reference) ? theme.backgroundColor : theme.textColor),
+                                      color:
+                                          complainSelections.contains(e.reference) ? theme.backgroundColor : theme.textColor),
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -123,7 +125,7 @@ class _RideFinishRatingWidgetState extends State<RideFinishRatingWidget> {
                   width: MediaQuery.of(context).size.width,
                   child: BlocConsumer<RideRatingCubit, RideRatingState>(
                     listener: (context, state) {
-                      if(state is RideRatingSuccess) {
+                      if (state is RideRatingSuccess) {
                         Navigator.of(context).pop();
                       }
                     },
@@ -135,8 +137,8 @@ class _RideFinishRatingWidgetState extends State<RideFinishRatingWidget> {
                             widget.ride.complains = complainSelections;
                             BlocProvider.of<RideRatingCubit>(context).submit(widget.ride);
                           },
-                          child:
-                              Text("Try again".toUpperCase(), style: TextStyles.title(context: context, color: theme.errorColor)),
+                          child: Text("Try again".toUpperCase(),
+                              style: TextStyles.title(context: context, color: theme.errorColor)),
                         );
                       } else if (state is RideRatingNetworking) {
                         return ElevatedButton(

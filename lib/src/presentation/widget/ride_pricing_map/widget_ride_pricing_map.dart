@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/direction_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/data/model/direction.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/ride/direction_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/data/model/direction.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class RidePricingMapWidget extends StatefulWidget {
   final Address pickup;
@@ -35,7 +35,9 @@ class _RidePricingMapWidgetState extends State<RidePricingMapWidget> {
     super.initState();
     lastTheme = BlocProvider.of<ThemeCubit>(context).state.value;
 
-    DefaultAssetBundle.of(context).loadString('assets/map-${ThemeHelper(lastTheme).isDark ? "dark" : "light"}.json').then((string) {
+    DefaultAssetBundle.of(context)
+        .loadString('assets/map-${ThemeHelper(lastTheme).isDark ? "dark" : "light"}.json')
+        .then((string) {
       this.mapStyle = string;
     }).catchError((error) {});
 
@@ -139,7 +141,8 @@ class _RidePricingMapWidgetState extends State<RidePricingMapWidget> {
             return Stack(
               children: [
                 GoogleMap(
-                  initialCameraPosition: CameraPosition(target: LatLng(widget.destination.latitude, widget.destination.longitude), zoom: 16),
+                  initialCameraPosition:
+                      CameraPosition(target: LatLng(widget.destination.latitude, widget.destination.longitude), zoom: 16),
                   mapType: MapType.normal,
                   indoorViewEnabled: false,
                   onMapCreated: mapCreated,

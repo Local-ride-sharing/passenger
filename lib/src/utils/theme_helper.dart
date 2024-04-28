@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:tmoto_passenger/src/utils/constants.dart';
+import 'package:passenger/src/utils/constants.dart';
 
 class ThemeHelper {
   final int value;
@@ -53,6 +53,5 @@ class ThemeHelper {
 
   Color get redShade => isDark ? secondaryColor : errorColor.withOpacity(0.04);
 
-  Color get vehicleSelectionBackground =>
-      isDark ? Colors.deepOrange.shade900.withOpacity(.15) : Colors.red.withOpacity(.15);
+  Color get vehicleSelectionBackground => isDark ? Colors.deepOrange.shade900.withOpacity(.15) : Colors.red.withOpacity(.15);
 }

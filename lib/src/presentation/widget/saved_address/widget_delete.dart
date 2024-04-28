@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/address/delete_address_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/address/delete_address_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class DeleteSavedAddressDialog extends StatelessWidget {
   final String reference;
@@ -23,8 +23,7 @@ class DeleteSavedAddressDialog extends StatelessWidget {
           actions: [
             TextButton(
               style: TextButton.styleFrom(
-                primary: theme.errorColor,
-                backgroundColor: theme.backgroundColor,
+                backgroundColor: theme.errorColor,
                 shadowColor: theme.shadowColor,
                 elevation: 3,
                 shape: RoundedRectangleBorder(
@@ -48,8 +47,7 @@ class DeleteSavedAddressDialog extends StatelessWidget {
                     builder: (deleteContext) => AlertDialog(
                       insetPadding: EdgeInsets.zero,
                       backgroundColor: theme.isDark ? theme.secondaryColor : theme.backgroundColor,
-                      title:
-                          Text("Confirmation", style: TextStyles.title(context: context, color: theme.primaryColor)),
+                      title: Text("Confirmation", style: TextStyles.title(context: context, color: theme.primaryColor)),
                       content: Text("Address deleted successfully",
                           style: TextStyles.body(context: context, color: theme.textColor)),
                     ),
@@ -60,7 +58,7 @@ class DeleteSavedAddressDialog extends StatelessWidget {
                 if (state is DeleteAddressError) {
                   return ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: theme.errorColor,
+                      backgroundColor: theme.errorColor,
                       elevation: 3,
                       shadowColor: theme.hintColor,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
@@ -69,13 +67,12 @@ class DeleteSavedAddressDialog extends StatelessWidget {
                     onPressed: () {
                       BlocProvider.of<DeleteAddressCubit>(context).deleteAddress(reference);
                     },
-                    child:
-                        Text("Try again", style: TextStyles.subTitle(context: context, color: theme.backgroundColor)),
+                    child: Text("Try again", style: TextStyles.subTitle(context: context, color: theme.backgroundColor)),
                   );
                 } else if (state is DeleteAddressNetworking) {
                   return ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: theme.errorColor,
+                      backgroundColor: theme.errorColor,
                       elevation: 3,
                       shadowColor: theme.hintColor,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
@@ -84,26 +81,24 @@ class DeleteSavedAddressDialog extends StatelessWidget {
                     onPressed: () {},
                     child: Container(
                         width: 64,
-                        child: Center(
-                            child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.white)))),
+                        child: Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.white)))),
                   );
                 } else if (state is DeleteAddressSuccess) {
                   return ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: theme.errorColor,
+                      backgroundColor: theme.errorColor,
                       elevation: 3,
                       shadowColor: theme.hintColor,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                       padding: EdgeInsets.symmetric(horizontal: 16),
                     ),
                     onPressed: () {},
-                    child:
-                        Text("Deleted", style: TextStyles.subTitle(context: context, color: theme.backgroundColor)),
+                    child: Text("Deleted", style: TextStyles.subTitle(context: context, color: theme.backgroundColor)),
                   );
                 } else {
                   return ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: theme.errorColor,
+                      backgroundColor: theme.errorColor,
                       elevation: 3,
                       shadowColor: theme.hintColor,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
@@ -112,8 +107,7 @@ class DeleteSavedAddressDialog extends StatelessWidget {
                     onPressed: () {
                       BlocProvider.of<DeleteAddressCubit>(context).deleteAddress(reference);
                     },
-                    child: Text("Yes, Delete",
-                        style: TextStyles.subTitle(context: context, color: theme.backgroundColor)),
+                    child: Text("Yes, Delete", style: TextStyles.subTitle(context: context, color: theme.backgroundColor)),
                   );
                 }
               },

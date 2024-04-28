@@ -8,17 +8,17 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/passenger/update_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/upload/upload_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/presentation/shimmer/shimmer_icon.dart';
-import 'package:tmoto_passenger/src/presentation/widget/edit_profile/widget_save_states.dart';
-import 'package:tmoto_passenger/src/presentation/widget/edit_profile/widget_upload_states.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/passenger/update_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/business_logic/upload/upload_cubit.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/presentation/shimmer/shimmer_icon.dart';
+import 'package:passenger/src/presentation/widget/edit_profile/widget_save_states.dart';
+import 'package:passenger/src/presentation/widget/edit_profile/widget_upload_states.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class EditProfileScreen extends StatefulWidget {
   @override
@@ -95,8 +95,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         child: InkWell(
                           onTap: () async {
-                            final XFile? file =
-                                await ImagePicker().pickImage(source: ImageSource.camera, preferredCameraDevice: CameraDevice.front, maxHeight: 1024, maxWidth: 1024);
+                            final XFile? file = await ImagePicker().pickImage(
+                                source: ImageSource.camera,
+                                preferredCameraDevice: CameraDevice.front,
+                                maxHeight: 1024,
+                                maxWidth: 1024);
                             if (file != null) {
                               setState(() {
                                 path = file.path;
@@ -112,7 +115,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   imageUrl: imageUrl,
                                   fit: BoxFit.cover,
                                   placeholder: (context, url) => ShimmerIcon(144, 144),
-                                  errorWidget: (context, url, error) => Center(child: Icon(Icons.person_rounded, color: theme.hintColor, size: 42)),
+                                  errorWidget: (context, url, error) =>
+                                      Center(child: Icon(Icons.person_rounded, color: theme.hintColor, size: 42)),
                                 ),
                         ),
                       )),
@@ -121,15 +125,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           top: 4,
                           child: InkWell(
                             onTap: () async {
-                              final XFile? file =
-                                  await ImagePicker().pickImage(source: ImageSource.camera, preferredCameraDevice: CameraDevice.front, maxHeight: 1024, maxWidth: 1024);
+                              final XFile? file = await ImagePicker().pickImage(
+                                  source: ImageSource.camera,
+                                  preferredCameraDevice: CameraDevice.front,
+                                  maxHeight: 1024,
+                                  maxWidth: 1024);
                               if (file != null) {
                                 setState(() {
                                   path = file.path;
                                 });
                               }
                             },
-                            child: CircleAvatar(backgroundColor: theme.backgroundColor, maxRadius: 16, child: Icon(MdiIcons.camera, color: theme.iconColor, size: 24)),
+                            child: CircleAvatar(
+                                backgroundColor: theme.backgroundColor,
+                                maxRadius: 16,
+                                child: Icon(MdiIcons.camera, color: theme.iconColor, size: 24)),
                           ))
                     ],
                   ),
@@ -150,7 +160,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       labelStyle: TextStyles.caption(context: context, color: theme.primaryColor),
                       hintText: "ex - John doe",
                       hintStyle: TextStyles.body(context: context, color: theme.hintColor),
-                      errorStyle: TextStyles.caption(context: context, color: theme.errorColor).copyWith(fontSize: 9, height: 1),
+                      errorStyle:
+                          TextStyles.caption(context: context, color: theme.errorColor).copyWith(fontSize: 9, height: 1),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: theme.primaryColor, width: 2),
                         borderRadius: BorderRadius.circular(16),
@@ -202,7 +213,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       labelStyle: TextStyles.caption(context: context, color: theme.primaryColor),
                       hintText: "ex - 01 Jan, 2000",
                       hintStyle: TextStyles.body(context: context, color: theme.hintColor),
-                      errorStyle: TextStyles.caption(context: context, color: theme.errorColor).copyWith(fontSize: 9, height: 1),
+                      errorStyle:
+                          TextStyles.caption(context: context, color: theme.errorColor).copyWith(fontSize: 9, height: 1),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: theme.primaryColor, width: 2),
                         borderRadius: BorderRadius.circular(16),
@@ -224,7 +236,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  Align(alignment: Alignment.centerLeft, child: Text("Gender", style: TextStyles.caption(context: context, color: theme.hintColor))),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Gender", style: TextStyles.caption(context: context, color: theme.hintColor))),
                   SizedBox(height: 4),
                   Container(
                     width: MediaQuery.of(context).size.width,
@@ -265,7 +279,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               imageUrl = state.data;
                               passenger.name = nameController.text;
                               passenger.gender = gender;
-                              passenger.dob = DateFormat("dd MMM, yyyy").parse(dateOfBirthController.text).millisecondsSinceEpoch;
+                              passenger.dob =
+                                  DateFormat("dd MMM, yyyy").parse(dateOfBirthController.text).millisecondsSinceEpoch;
                               passenger.profilePicture = imageUrl;
                               BlocProvider.of<UpdateCubit>(context).update(passenger);
                             }

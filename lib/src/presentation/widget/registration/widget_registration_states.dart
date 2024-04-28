@@ -1,12 +1,12 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/registration/registration_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/registration/registration_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class SignUpStatesForRegistration extends StatelessWidget {
   final String reference;
@@ -16,7 +16,13 @@ class SignUpStatesForRegistration extends StatelessWidget {
   final String phone;
   final String? imageUrl;
 
-  SignUpStatesForRegistration({required this.reference, required this.name, required this.gender, required this.dob, required this.phone, required this.imageUrl});
+  SignUpStatesForRegistration(
+      {required this.reference,
+      required this.name,
+      required this.gender,
+      required this.dob,
+      required this.phone,
+      required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +38,8 @@ class SignUpStatesForRegistration extends StatelessWidget {
                   final Passenger passenger = Passenger(reference, name, gender, dob, phone, imageUrl, token, true);
                   BlocProvider.of<RegistrationCubit>(context).save(passenger);
                 },
-                child: Text("Signup failed".toUpperCase(), style: TextStyles.title(context: builderContext, color: theme.errorColor)),
+                child: Text("Signup failed".toUpperCase(),
+                    style: TextStyles.title(context: builderContext, color: theme.errorColor)),
               );
             } else if (state is RegistrationNetworking) {
               return ElevatedButton(
@@ -42,7 +49,8 @@ class SignUpStatesForRegistration extends StatelessWidget {
             } else if (state is RegistrationSuccess) {
               return ElevatedButton(
                 onPressed: () async {},
-                child: Text("Account created".toUpperCase(), style: TextStyles.title(context: builderContext, color: theme.successColor)),
+                child: Text("Account created".toUpperCase(),
+                    style: TextStyles.title(context: builderContext, color: theme.successColor)),
               );
             } else {
               return ElevatedButton(
@@ -51,7 +59,8 @@ class SignUpStatesForRegistration extends StatelessWidget {
                   final Passenger passenger = Passenger(reference, name, gender, dob, phone, imageUrl, token, true);
                   BlocProvider.of<RegistrationCubit>(context).save(passenger);
                 },
-                child: Text("Create account".toUpperCase(), style: TextStyles.title(context: builderContext, color: theme.textColor)),
+                child: Text("Create account".toUpperCase(),
+                    style: TextStyles.title(context: builderContext, color: theme.textColor)),
               );
             }
           },

@@ -1,7 +1,7 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
 
 class VehicleProvider extends ChangeNotifier {
   Map<String, Vehicle> items = HashMap<String, Vehicle>();

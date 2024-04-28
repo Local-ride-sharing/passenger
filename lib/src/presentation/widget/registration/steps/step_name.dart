@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class NameStep extends StatefulWidget {
   final String name;
@@ -56,7 +56,8 @@ class _NameStepState extends State<NameStep> {
                       labelStyle: TextStyles.caption(context: context, color: theme.primaryColor),
                       hintText: "ex - John doe",
                       hintStyle: TextStyles.body(context: context, color: theme.hintColor),
-                      errorStyle: TextStyles.caption(context: context, color: theme.errorColor).copyWith(fontSize: 9, height: 1),
+                      errorStyle:
+                          TextStyles.caption(context: context, color: theme.errorColor).copyWith(fontSize: 9, height: 1),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: theme.primaryColor, width: 2),
                         borderRadius: BorderRadius.circular(16),

@@ -1,6 +1,6 @@
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/service/service_registration.dart';
-import 'package:tmoto_passenger/src/utils/network_response.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/service/service_registration.dart';
+import 'package:passenger/src/utils/network_response.dart';
 
 class RegistrationRepository {
   late RegistrationService _service;

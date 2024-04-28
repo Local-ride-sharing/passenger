@@ -1,26 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/driver/find_single_driver_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/reservation/update_reservation_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/bid.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/model/reservation.dart';
-import 'package:tmoto_passenger/src/presentation/widget/profile/reservations/widget_driver.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/helper.dart';
-import 'package:tmoto_passenger/src/utils/networking_indicator.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/driver/find_single_driver_cubit.dart';
+import 'package:passenger/src/business_logic/reservation/update_reservation_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/bid.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/model/reservation.dart';
+import 'package:passenger/src/presentation/widget/profile/reservations/widget_driver.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/helper.dart';
+import 'package:passenger/src/utils/networking_indicator.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class BookDriverBottomSheet extends StatefulWidget {
   final Reservation reservation;
   final Bid bid;
 
-  const BookDriverBottomSheet({Key? key, required this.reservation, required this.bid})
-      : super(key: key);
+  const BookDriverBottomSheet({Key? key, required this.reservation, required this.bid}) : super(key: key);
 
   @override
   State<BookDriverBottomSheet> createState() => _BookDriverBottomSheetState();
@@ -30,8 +29,7 @@ class _BookDriverBottomSheetState extends State<BookDriverBottomSheet> {
   @override
   void initState() {
     Future.delayed(Duration(milliseconds: 1), () {
-      BlocProvider.of<FindSingleDriverCubit>(context)
-          .findDriver(context, widget.bid.driverReference);
+      BlocProvider.of<FindSingleDriverCubit>(context).findDriver(context, widget.bid.driverReference);
     });
     super.initState();
   }
@@ -57,31 +55,25 @@ class _BookDriverBottomSheetState extends State<BookDriverBottomSheet> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ReservationDriverListTile(
-                          bid: widget.bid, reservation: widget.reservation, showHighlight: false),
+                      ReservationDriverListTile(bid: widget.bid, reservation: widget.reservation, showHighlight: false),
                       const SizedBox(height: 16),
                       AspectRatio(
                         aspectRatio: 16 / 9,
                         child: Container(
                           clipBehavior: Clip.antiAliasWithSaveLayer,
-                          decoration: BoxDecoration(
-                              color: theme.secondaryColor, borderRadius: BorderRadius.circular(16)),
+                          decoration: BoxDecoration(color: theme.secondaryColor, borderRadius: BorderRadius.circular(16)),
                           child: ListView.builder(
                             itemBuilder: (_, index) {
-                              String url = index == 0
-                                  ? driver.vehicle.frontPhoto!
-                                  : driver.vehicle.interiorPhoto!;
+                              String url = index == 0 ? driver.vehicle.frontPhoto! : driver.vehicle.interiorPhoto!;
                               String side = index == 0 ? "Front" : "Interior";
                               return Stack(
                                 children: [
                                   CachedNetworkImage(
                                     imageUrl: url,
-                                    placeholder: (_, __) => Center(
-                                        child: NetworkingIndicator(
-                                            dimension: 54, color: theme.hintColor)),
-                                    errorWidget: (_, __, ___) => Icon(
-                                        Icons.photo_size_select_actual_rounded,
-                                        color: theme.hintColor),
+                                    placeholder: (_, __) =>
+                                        Center(child: NetworkingIndicator(dimension: 54, color: theme.hintColor)),
+                                    errorWidget: (_, __, ___) =>
+                                        Icon(Icons.photo_size_select_actual_rounded, color: theme.hintColor),
                                     width: MediaQuery.of(context).size.width - 32,
                                     height: MediaQuery.of(context).size.height,
                                     fit: BoxFit.cover,
@@ -92,11 +84,8 @@ class _BookDriverBottomSheetState extends State<BookDriverBottomSheet> {
                                       visualDensity: VisualDensity.compact,
                                       padding: EdgeInsets.only(right: 8),
                                       labelPadding: EdgeInsets.zero,
-                                      avatar: Icon(Icons.crop_free_rounded,
-                                          color: theme.textColor, size: 12),
-                                      label: Text(side,
-                                          style: TextStyles.caption(
-                                              context: context, color: theme.textColor)),
+                                      avatar: Icon(Icons.crop_free_rounded, color: theme.textColor, size: 12),
+                                      label: Text(side, style: TextStyles.caption(context: context, color: theme.textColor)),
                                     ),
                                     bottom: 8,
                                     right: 8,
@@ -133,43 +122,33 @@ class _BookDriverBottomSheetState extends State<BookDriverBottomSheet> {
                               if (state is UpdateReservationError) {
                                 return ElevatedButton(
                                   child: Text("try again".toUpperCase(),
-                                      style: TextStyles.title(
-                                          context: context, color: theme.textColor)),
+                                      style: TextStyles.title(context: context, color: theme.textColor)),
                                   onPressed: () {
                                     final Reservation reservation = widget.reservation;
                                     reservation.primarySelection = widget.bid;
-                                    reservation.status =
-                                        ReservationStatus.awaitingDriverConfirmation;
-                                    BlocProvider.of<UpdateReservationCubit>(context)
-                                        .update(reservation);
+                                    reservation.status = ReservationStatus.awaitingDriverConfirmation;
+                                    BlocProvider.of<UpdateReservationCubit>(context).update(reservation);
                                   },
                                 );
                               } else if (state is UpdateReservationNetworking) {
                                 return ElevatedButton(
-                                  child: Center(
-                                      child: NetworkingIndicator(
-                                          dimension: 20, color: theme.textColor)),
+                                  child: Center(child: NetworkingIndicator(dimension: 20, color: theme.textColor)),
                                   onPressed: () {},
                                 );
                               } else if (state is UpdateReservationSuccess) {
                                 return ElevatedButton(
-                                  child: Center(
-                                      child: Icon(Icons.done_outline_rounded,
-                                          color: theme.successColor)),
+                                  child: Center(child: Icon(Icons.done_outline_rounded, color: theme.successColor)),
                                   onPressed: () {},
                                 );
                               } else {
                                 return ElevatedButton(
                                   child: Text("Book now".toUpperCase(),
-                                      style: TextStyles.title(
-                                          context: context, color: theme.textColor)),
+                                      style: TextStyles.title(context: context, color: theme.textColor)),
                                   onPressed: () {
                                     final Reservation reservation = widget.reservation;
                                     reservation.primarySelection = widget.bid;
-                                    reservation.status =
-                                        ReservationStatus.awaitingDriverConfirmation;
-                                    BlocProvider.of<UpdateReservationCubit>(context)
-                                        .update(reservation);
+                                    reservation.status = ReservationStatus.awaitingDriverConfirmation;
+                                    BlocProvider.of<UpdateReservationCubit>(context).update(reservation);
                                     Navigator.of(context).pushNamed(AppRouter.reservationHistory);
                                   },
                                 );

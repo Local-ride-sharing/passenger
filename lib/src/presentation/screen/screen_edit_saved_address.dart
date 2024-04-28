@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/address/update_address_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/data/model/saved_address.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_profile.dart';
-import 'package:tmoto_passenger/src/presentation/widget/instant_ride/widget_address_text_field_for_address_picker.dart';
-import 'package:tmoto_passenger/src/presentation/widget/saved_address/widget_address_menu_for_saved_address.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/address/update_address_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/data/model/saved_address.dart';
+import 'package:passenger/src/data/provider/provider_profile.dart';
+import 'package:passenger/src/presentation/widget/instant_ride/widget_address_text_field_for_address_picker.dart';
+import 'package:passenger/src/presentation/widget/saved_address/widget_address_menu_for_saved_address.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class EditSavedAddressScreen extends StatefulWidget {
   final String route = "/edit_address";
@@ -136,7 +136,8 @@ class _EditSavedAddressScreenState extends State<EditSavedAddressScreen> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text("Update error", style: TextStyles.subTitle(context: context, color: theme.errorColor)),
+                              title:
+                                  Text("Update error", style: TextStyles.subTitle(context: context, color: theme.errorColor)),
                               content: Text(state.error, style: TextStyles.body(context: context, color: theme.errorColor)),
                             ),
                           );
@@ -145,8 +146,10 @@ class _EditSavedAddressScreenState extends State<EditSavedAddressScreen> {
                           showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                              title: Text("Updated successfully", style: TextStyles.subTitle(context: context, color: theme.primaryColor)),
-                              content: Text("Address updated successfully", style: TextStyles.body(context: context, color: theme.primaryColor)),
+                              title: Text("Updated successfully",
+                                  style: TextStyles.subTitle(context: context, color: theme.primaryColor)),
+                              content: Text("Address updated successfully",
+                                  style: TextStyles.body(context: context, color: theme.primaryColor)),
                             ),
                           );
                         }
@@ -154,12 +157,14 @@ class _EditSavedAddressScreenState extends State<EditSavedAddressScreen> {
                       builder: (context, state) {
                         if (state is UpdateAddressNetworking) {
                           return ElevatedButton(
-                            child: Text("Updating...".toUpperCase(), style: TextStyles.title(context: context, color: theme.textColor)),
+                            child: Text("Updating...".toUpperCase(),
+                                style: TextStyles.title(context: context, color: theme.textColor)),
                             onPressed: () {},
                           );
                         } else if (state is UpdateAddressError) {
                           return ElevatedButton(
-                            child: Text("Failed to update".toUpperCase(), style: TextStyles.title(context: context, color: theme.textColor)),
+                            child: Text("Failed to update".toUpperCase(),
+                                style: TextStyles.title(context: context, color: theme.textColor)),
                             onPressed: label.isEmpty
                                 ? null
                                 : () {
@@ -176,12 +181,14 @@ class _EditSavedAddressScreenState extends State<EditSavedAddressScreen> {
                           );
                         } else if (state is UpdateAddressSuccess) {
                           return ElevatedButton(
-                            child: Text("Updated".toUpperCase(), style: TextStyles.title(context: context, color: theme.textColor)),
+                            child: Text("Updated".toUpperCase(),
+                                style: TextStyles.title(context: context, color: theme.textColor)),
                             onPressed: () {},
                           );
                         } else {
                           return ElevatedButton(
-                            child: Text("Update".toUpperCase(), style: TextStyles.title(context: context, color: theme.textColor)),
+                            child:
+                                Text("Update".toUpperCase(), style: TextStyles.title(context: context, color: theme.textColor)),
                             onPressed: label.isEmpty
                                 ? null
                                 : () {

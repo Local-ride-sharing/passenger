@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/presentation/shimmer/shimmer_label.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/presentation/shimmer/shimmer_label.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class ShimmerDashboardVehicles extends StatelessWidget {
   @override

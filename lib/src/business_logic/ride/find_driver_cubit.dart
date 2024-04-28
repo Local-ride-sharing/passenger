@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
-import 'package:tmoto_passenger/src/data/repository/repository_ride.dart';
-import 'package:tmoto_passenger/src/utils/constants.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/data/repository/repository_ride.dart';
+import 'package:passenger/src/utils/constants.dart';
+import 'package:passenger/src/utils/enums.dart';
 
 part 'find_driver_state.dart';
 
@@ -26,19 +26,11 @@ class FindDriverCubit extends Cubit<FindDriverState> {
           final List<Driver> femaleResult = [];
           final List<Driver> maleResult = [];
           response.result!.forEach((driver) {
-            if ((driver.location.latitude >
-                    minLatitude(ride.pickup.latitude, vehicle.searchRadius)) &&
-                (driver.location.latitude <
-                    maxLatitude(ride.pickup.latitude, vehicle.searchRadius)) &&
-                (driver.location.longitude >
-                    minLongitude(ride.pickup.longitude, vehicle.searchRadius)) &&
-                (driver.location.longitude <
-                    maxLatitude(ride.pickup.longitude, vehicle.searchRadius)) &&
-                (DateTime.now()
-                        .difference(
-                            DateTime.fromMillisecondsSinceEpoch(driver.location.lastUpdatedAt))
-                        .inDays ==
-                    0)) {
+            if ((driver.location.latitude > minLatitude(ride.pickup.latitude, vehicle.searchRadius)) &&
+                (driver.location.latitude < maxLatitude(ride.pickup.latitude, vehicle.searchRadius)) &&
+                (driver.location.longitude > minLongitude(ride.pickup.longitude, vehicle.searchRadius)) &&
+                (driver.location.longitude < maxLatitude(ride.pickup.longitude, vehicle.searchRadius)) &&
+                (DateTime.now().difference(DateTime.fromMillisecondsSinceEpoch(driver.location.lastUpdatedAt)).inDays == 0)) {
               if (driver.gender == Gender.female) {
                 femaleResult.add(driver);
               } else if (driver.gender == Gender.male) {
@@ -46,16 +38,16 @@ class FindDriverCubit extends Cubit<FindDriverState> {
               }
             }
           });
-          maleResult.sort((a, b) => Geolocator.distanceBetween(ride.pickup.latitude,
-                  ride.pickup.longitude, a.location.latitude, a.location.longitude)
-              .compareTo(Geolocator.distanceBetween(ride.pickup.latitude,
-                  ride.pickup.longitude, b.location.latitude, b.location.longitude)));
+          maleResult.sort((a, b) =>
+              Geolocator.distanceBetween(ride.pickup.latitude, ride.pickup.longitude, a.location.latitude, a.location.longitude)
+                  .compareTo(Geolocator.distanceBetween(
+                      ride.pickup.latitude, ride.pickup.longitude, b.location.latitude, b.location.longitude)));
           femaleResult.sort(
-            (a, b) => Geolocator.distanceBetween(ride.pickup.latitude, ride.pickup.longitude,
-                    a.location.latitude, a.location.longitude)
+            (a, b) => Geolocator.distanceBetween(
+                    ride.pickup.latitude, ride.pickup.longitude, a.location.latitude, a.location.longitude)
                 .compareTo(
-              Geolocator.distanceBetween(ride.pickup.latitude, ride.pickup.longitude,
-                  b.location.latitude, b.location.longitude),
+              Geolocator.distanceBetween(
+                  ride.pickup.latitude, ride.pickup.longitude, b.location.latitude, b.location.longitude),
             ),
           );
           if (ride.priority == RidePriority.female) {

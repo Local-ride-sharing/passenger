@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/address/saved_address_list_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/presentation/widget/widget_location_point_picker.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/address/saved_address_list_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/presentation/widget/widget_location_point_picker.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class AddressPicker extends StatelessWidget {
   final IconData icon;
@@ -15,11 +15,7 @@ class AddressPicker extends StatelessWidget {
   final Function(Address) onFinish;
 
   AddressPicker(
-      {required this.icon,
-      required this.address,
-      required this.hint,
-      required this.onFinish,
-      this.showSavedAddresses});
+      {required this.icon, required this.address, required this.hint, required this.onFinish, this.showSavedAddresses});
 
   @override
   Widget build(BuildContext context) {

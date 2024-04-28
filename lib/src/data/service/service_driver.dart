@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/utils/database_tables.dart';
-import 'package:tmoto_passenger/src/utils/network_response.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/utils/database_tables.dart';
+import 'package:passenger/src/utils/network_response.dart';
 
 class DriverService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -21,8 +21,5 @@ class DriverService {
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> findRides(String reference) =>
-      FirebaseFirestore.instance
-          .collection(DatabaseTable.rides)
-          .where("driverReference", isEqualTo: reference)
-          .snapshots();
+      FirebaseFirestore.instance.collection(DatabaseTable.rides).where("driverReference", isEqualTo: reference).snapshots();
 }

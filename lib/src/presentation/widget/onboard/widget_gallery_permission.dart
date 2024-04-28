@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart' as permissionHandler;
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class GalleryPermissionWidget extends StatelessWidget {
   final Function onApproved;
@@ -50,8 +50,8 @@ class GalleryPermissionWidget extends StatelessWidget {
                       onApproved();
                     }
                   },
-                  child: Text("Grant permission".toUpperCase(),
-                      style: TextStyles.title(context: context, color: theme.textColor)),
+                  child:
+                      Text("Grant permission".toUpperCase(), style: TextStyles.title(context: context, color: theme.textColor)),
                 ),
               ),
             ),

@@ -4,16 +4,16 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:tmoto_passenger/src/business_logic/registration/registration_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/upload/upload_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/presentation/widget/registration/widget_registration_states.dart';
-import 'package:tmoto_passenger/src/presentation/widget/registration/widget_upload_states.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/registration/registration_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/business_logic/upload/upload_cubit.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/presentation/widget/registration/widget_registration_states.dart';
+import 'package:passenger/src/presentation/widget/registration/widget_upload_states.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class FinishStep extends StatefulWidget {
   final String reference;
@@ -23,7 +23,13 @@ class FinishStep extends StatefulWidget {
   final Gender gender;
   final String? filePath;
 
-  FinishStep({required this.name, required this.reference, required this.dateOfBirth, required this.phone, required this.gender, required this.filePath});
+  FinishStep(
+      {required this.name,
+      required this.reference,
+      required this.dateOfBirth,
+      required this.phone,
+      required this.gender,
+      required this.filePath});
 
   @override
   _FinishStepState createState() => _FinishStepState();
@@ -116,7 +122,8 @@ class _FinishStepState extends State<FinishStep> {
                           if (state is UploadSuccess) {
                             imageUrl = state.data;
                             final String token = await FirebaseMessaging.instance.getToken() ?? "";
-                            final Passenger passenger = Passenger(widget.reference, widget.name, widget.gender, widget.dateOfBirth, widget.phone, state.data, token, true);
+                            final Passenger passenger = Passenger(widget.reference, widget.name, widget.gender,
+                                widget.dateOfBirth, widget.phone, state.data, token, true);
                             BlocProvider.of<RegistrationCubit>(context).save(passenger);
                           }
                         },

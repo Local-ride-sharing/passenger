@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/point.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/point.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 // ignore: must_be_immutable
 class PointDropdownSelector extends StatefulWidget {
@@ -12,8 +12,7 @@ class PointDropdownSelector extends StatefulWidget {
   final List<Point> items;
   final Function(Point) onSelect;
 
-  PointDropdownSelector(
-      {required this.value, required this.title, required this.items, required this.onSelect});
+  PointDropdownSelector({required this.value, required this.title, required this.items, required this.onSelect});
 
   @override
   _PointDropdownSelectorState createState() => _PointDropdownSelectorState();
@@ -39,8 +38,7 @@ class _PointDropdownSelectorState extends State<PointDropdownSelector> {
           backgroundColor: theme.backgroundColor,
           appBar: AppBar(
             automaticallyImplyLeading: true,
-            title: Text(widget.title,
-                style: TextStyles.title(context: context, color: theme.textColor)),
+            title: Text(widget.title, style: TextStyles.title(context: context, color: theme.textColor)),
             backgroundColor: theme.backgroundColor,
             centerTitle: false,
             elevation: 0,
@@ -60,17 +58,14 @@ class _PointDropdownSelectorState extends State<PointDropdownSelector> {
                       list = widget.items
                           .where((element) =>
                               element.enPickup.label.toLowerCase().contains(value.toLowerCase()) ||
-                              element.enDestination.label
-                                  .toLowerCase()
-                                  .contains(value.toLowerCase()))
+                              element.enDestination.label.toLowerCase().contains(value.toLowerCase()))
                           .toList();
                     });
                   },
                   decoration: InputDecoration(
                     fillColor: theme.secondaryColor,
                     filled: true,
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide.none, borderRadius: BorderRadius.circular(8)),
+                    border: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(8)),
                     contentPadding: EdgeInsets.all(16),
                     hintText: "search",
                     hintStyle: TextStyles.body(context: context, color: theme.hintColor),
@@ -103,10 +98,9 @@ class _PointDropdownSelectorState extends State<PointDropdownSelector> {
                             visualDensity: VisualDensity(horizontal: -4, vertical: -4),
                             horizontalTitleGap: 0,
                             leading: Icon(Icons.hail, color: theme.iconColor),
-                            title: Text(item.enPickup.label,
-                                style: TextStyles.body(context: context, color: theme.textColor)),
-                            trailing: Text("৳ ${item.baseFare}",
-                                style: TextStyles.body(context: context, color: theme.textColor)),
+                            title: Text(item.enPickup.label, style: TextStyles.body(context: context, color: theme.textColor)),
+                            trailing:
+                                Text("৳ ${item.baseFare}", style: TextStyles.body(context: context, color: theme.textColor)),
                           ),
                           ListTile(
                             dense: true,
@@ -117,8 +111,7 @@ class _PointDropdownSelectorState extends State<PointDropdownSelector> {
                             title: Text(item.enDestination.label,
                                 style: TextStyles.body(context: context, color: theme.textColor)),
                             trailing: Text("${item.distance.toStringAsFixed(2)} km",
-                                style:
-                                    TextStyles.caption(context: context, color: theme.hintColor)),
+                                style: TextStyles.caption(context: context, color: theme.hintColor)),
                           ),
                         ],
                       ),

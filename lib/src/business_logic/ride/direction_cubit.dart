@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:tmoto_passenger/src/data/model/direction.dart';
-import 'package:tmoto_passenger/src/data/repository/repository_ride.dart';
+import 'package:passenger/src/data/model/direction.dart';
+import 'package:passenger/src/data/repository/repository_ride.dart';
 
 part 'direction_state.dart';
 

@@ -1,4 +1,4 @@
-import 'package:tmoto_passenger/src/data/model/address.dart';
+import 'package:passenger/src/data/model/address.dart';
 
 class Point {
   late String reference;

@@ -1,18 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/cancel_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/presentation/inherited/inherited_ride.dart';
-import 'package:tmoto_passenger/src/presentation/shimmer/shimmer_icon.dart';
-import 'package:tmoto_passenger/src/presentation/widget/find_driver/widget_rating.dart';
-import 'package:tmoto_passenger/src/presentation/widget/find_driver/widget_total_ride.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/helper.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/ride/cancel_ride_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/presentation/inherited/inherited_ride.dart';
+import 'package:passenger/src/presentation/shimmer/shimmer_icon.dart';
+import 'package:passenger/src/presentation/widget/find_driver/widget_rating.dart';
+import 'package:passenger/src/presentation/widget/find_driver/widget_total_ride.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/helper.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FindDriverCurrentAssignedDriver extends StatelessWidget {
@@ -53,13 +53,11 @@ class FindDriverCurrentAssignedDriver extends StatelessWidget {
                             imageUrl: driver.profilePicture,
                             fit: BoxFit.cover,
                             placeholder: (_, __) => ShimmerIcon(36, 36),
-                            errorWidget: (_, __, ___) =>
-                                Center(child: Icon(Icons.person_outline_rounded)),
+                            errorWidget: (_, __, ___) => Center(child: Icon(Icons.person_outline_rounded)),
                           )
                         : Center(child: Icon(Icons.person_outline_rounded)),
                   ),
-                  title: Text(driver.name,
-                      style: TextStyles.body(context: context, color: theme.textColor)),
+                  title: Text(driver.name, style: TextStyles.body(context: context, color: theme.textColor)),
                   subtitle: Row(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -92,8 +90,7 @@ class FindDriverCurrentAssignedDriver extends StatelessWidget {
                     listener: (_, state) {
                       if (state is CancelRideSuccess) {
                         Helper().publishRideCancellationNotification(ride, driver);
-                        Navigator.of(context)
-                            .pushNamedAndRemoveUntil(AppRouter.dashboard, (route) => false);
+                        Navigator.of(context).pushNamedAndRemoveUntil(AppRouter.dashboard, (route) => false);
                       }
                     },
                     builder: (_, state) {
@@ -103,21 +100,17 @@ class FindDriverCurrentAssignedDriver extends StatelessWidget {
                             ride.isCanceled = true;
                             BlocProvider.of<CancelRideCubit>(context).cancelRide(ride);
                           },
-                          child: Text("Try again",
-                              style: TextStyles.title(context: context, color: theme.errorColor)),
+                          child: Text("Try again", style: TextStyles.title(context: context, color: theme.errorColor)),
                         );
                       } else if (state is CancelRideNetworking) {
                         return ElevatedButton(
                           onPressed: () {},
-                          child: Center(
-                              child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation(theme.errorColor))),
+                          child: Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(theme.errorColor))),
                         );
                       } else if (state is CancelRideSuccess) {
                         return ElevatedButton(
                           onPressed: () {},
-                          child: Text("Canceled",
-                              style: TextStyles.title(context: context, color: theme.errorColor)),
+                          child: Text("Canceled", style: TextStyles.title(context: context, color: theme.errorColor)),
                         );
                       } else {
                         return ElevatedButton(
@@ -125,8 +118,7 @@ class FindDriverCurrentAssignedDriver extends StatelessWidget {
                             ride.isCanceled = true;
                             BlocProvider.of<CancelRideCubit>(context).cancelRide(ride);
                           },
-                          child: Text("Cancel ride",
-                              style: TextStyles.title(context: context, color: theme.errorColor)),
+                          child: Text("Cancel ride", style: TextStyles.title(context: context, color: theme.errorColor)),
                         );
                       }
                     },

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/complains_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/ride_rating_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/single_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/presentation/widget/ride_finish/widget_rating.dart';
-import 'package:tmoto_passenger/src/presentation/widget/widget_price_breakdown.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/ride/complains_cubit.dart';
+import 'package:passenger/src/business_logic/ride/ride_rating_cubit.dart';
+import 'package:passenger/src/business_logic/ride/single_ride_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/presentation/widget/ride_finish/widget_rating.dart';
+import 'package:passenger/src/presentation/widget/widget_price_breakdown.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class RideFinishScreen extends StatefulWidget {
   final String reference;
@@ -57,14 +57,12 @@ class _RideFinishScreenState extends State<RideFinishScreen> {
                         children: [
                           Text(
                             "৳ ${ride.fare}",
-                            style:
-                                TextStyles.headline(context: context, color: theme.backgroundColor),
+                            style: TextStyles.headline(context: context, color: theme.backgroundColor),
                           ),
                           SizedBox(width: 8),
                           IconButton(
                             onPressed: () {
-                              showModalBottomSheet(
-                                  context: context, builder: (_) => PriceBreakdownWidget(ride));
+                              showModalBottomSheet(context: context, builder: (_) => PriceBreakdownWidget(ride));
                             },
                             padding: EdgeInsets.zero,
                             visualDensity: VisualDensity(horizontal: -4, vertical: -4),
@@ -109,20 +107,17 @@ class _RideFinishScreenState extends State<RideFinishScreen> {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [1, 2, 3, 4, 5]
-                              .map((e) => Icon(Icons.star_border_rounded,
-                                  color: theme.backgroundColor, size: 42))
+                              .map((e) => Icon(Icons.star_border_rounded, color: theme.backgroundColor, size: 42))
                               .toList(),
                         ),
                       ),
                       SizedBox(height: 54),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context)
-                              .pushNamedAndRemoveUntil(AppRouter.dashboard, (route) => false);
+                          Navigator.of(context).pushNamedAndRemoveUntil(AppRouter.dashboard, (route) => false);
                         },
-                        child: Text("Back to dashboard",
-                            style:
-                                TextStyles.subTitle(context: context, color: theme.successColor)),
+                        child:
+                            Text("Back to dashboard", style: TextStyles.subTitle(context: context, color: theme.successColor)),
                       ),
                     ],
                   );

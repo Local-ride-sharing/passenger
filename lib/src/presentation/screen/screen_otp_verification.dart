@@ -2,14 +2,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/count_down_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/login/existence_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/login/generate_otp_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/login/verify_otp_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/count_down_cubit.dart';
+import 'package:passenger/src/business_logic/login/existence_cubit.dart';
+import 'package:passenger/src/business_logic/login/generate_otp_cubit.dart';
+import 'package:passenger/src/business_logic/login/verify_otp_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
   final String phoneNumber;
@@ -54,14 +54,12 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(text: "A ", style: TextStyles.caption(context: context, color: theme.textColor)),
-                          TextSpan(
-                              text: "6-digits", style: TextStyles.body(context: context, color: theme.accentColor)),
+                          TextSpan(text: "6-digits", style: TextStyles.body(context: context, color: theme.accentColor)),
                           TextSpan(
                               text: " verification code is sent to ",
                               style: TextStyles.caption(context: context, color: theme.textColor)),
                           TextSpan(
-                              text: widget.phoneNumber,
-                              style: TextStyles.body(context: context, color: theme.accentColor)),
+                              text: widget.phoneNumber, style: TextStyles.body(context: context, color: theme.accentColor)),
                           TextSpan(
                             text: ".\n Please input the valid verification code below to identify your phone number.",
                             style: TextStyles.caption(context: context, color: theme.textColor),
@@ -90,8 +88,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                           isDense: true,
                           hintText: "* * * * * *",
                           hintStyle: TextStyles.headline(context: context, color: theme.hintColor),
-                          errorStyle: TextStyles.caption(context: context, color: theme.errorColor)
-                              .copyWith(fontSize: 0, height: 0),
+                          errorStyle:
+                              TextStyles.caption(context: context, color: theme.errorColor).copyWith(fontSize: 0, height: 0),
                           enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: theme.primaryColor, width: 2),
                             borderRadius: BorderRadius.circular(16),
@@ -145,8 +143,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                 BlocProvider.of<CountDownCubit>(context).initiate(60);
                                 BlocProvider.of<GenerateOTPCubit>(context).generateOTP(widget.phoneNumber);
                               },
-                              child: Center(
-                                  child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.blue))),
+                              child: Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.blue))),
                             ),
                           );
                         } else {
@@ -174,18 +171,14 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                   return ElevatedButton(
                                     onPressed: () {},
                                     child: Center(
-                                        child: CircularProgressIndicator(
-                                            valueColor: AlwaysStoppedAnimation(Colors.blue))),
+                                        child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.blue))),
                                   );
                                 } else if (state is VerifyOTPSuccess) {
                                   return BlocConsumer<ExistenceCubit, ExistenceState>(
                                     listener: (context, state) {
                                       if (state is ExistenceSuccess) {
                                         Navigator.of(context).pushNamedAndRemoveUntil(
-                                            state.exists
-                                                ? AppRouter.initialization
-                                                : AppRouter.registration,
-                                                (route) => false);
+                                            state.exists ? AppRouter.initialization : AppRouter.registration, (route) => false);
                                       }
                                     },
                                     builder: (context, state) {
@@ -204,8 +197,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                         return ElevatedButton(
                                           onPressed: () {},
                                           child: Center(
-                                              child: CircularProgressIndicator(
-                                                  valueColor: AlwaysStoppedAnimation(Colors.blue))),
+                                              child:
+                                                  CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.blue))),
                                         );
                                       } else if (state is ExistenceSuccess) {
                                         return ElevatedButton(
@@ -250,34 +243,33 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                           margin: EdgeInsets.only(top: 16),
                           child: state > 0
                               ? RichText(
-                            text: TextSpan(
-                              style: TextStyles.caption(context: context, color: theme.hintColor),
-                              children: <TextSpan>[
-                                TextSpan(text: "Code sent. Resend code in "),
-                                TextSpan(
-                                  text: "${state}s",
-                                  style: TextStyles.caption(context: context, color: theme.accentColor),
-                                ),
-                              ],
-                            ),
-                          )
+                                  text: TextSpan(
+                                    style: TextStyles.caption(context: context, color: theme.hintColor),
+                                    children: <TextSpan>[
+                                      TextSpan(text: "Code sent. Resend code in "),
+                                      TextSpan(
+                                        text: "${state}s",
+                                        style: TextStyles.caption(context: context, color: theme.accentColor),
+                                      ),
+                                    ],
+                                  ),
+                                )
                               : RichText(
-                            text: TextSpan(
-                              style: TextStyles.caption(context: context, color: theme.hintColor),
-                              children: <TextSpan>[
-                                TextSpan(text: "Didn't received code?\t\t"),
-                                TextSpan(
-                                  text: "Resend code",
-                                  style: TextStyles.body(context: context, color: theme.accentColor),
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () {
-                                      BlocProvider.of<GenerateOTPCubit>(context)
-                                          .generateOTP(widget.phoneNumber);
-                                    },
+                                  text: TextSpan(
+                                    style: TextStyles.caption(context: context, color: theme.hintColor),
+                                    children: <TextSpan>[
+                                      TextSpan(text: "Didn't received code?\t\t"),
+                                      TextSpan(
+                                        text: "Resend code",
+                                        style: TextStyles.body(context: context, color: theme.accentColor),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            BlocProvider.of<GenerateOTPCubit>(context).generateOTP(widget.phoneNumber);
+                                          },
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
-                          ),
                         );
                       },
                     ),

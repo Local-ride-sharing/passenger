@@ -1,4 +1,4 @@
-# tmoto_passenger
+# passenger
 
 Tmoto-passenger
 

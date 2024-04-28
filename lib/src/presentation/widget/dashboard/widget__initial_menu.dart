@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class DashboardMenu extends StatelessWidget {
   final String image;
@@ -50,8 +50,7 @@ class DashboardMenu extends StatelessWidget {
                   SizedBox(height: 4),
                   Text(
                     name,
-                    style: TextStyles.caption(context: context, color: theme.textColor)
-                        .copyWith(fontSize: 10),
+                    style: TextStyles.caption(context: context, color: theme.textColor).copyWith(fontSize: 10),
                   ),
                 ],
               ),

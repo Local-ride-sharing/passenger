@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart' as cloud_firestore;
 import 'package:firebase_storage/firebase_storage.dart' as storage;
-import 'package:tmoto_passenger/src/data/model/passenger.dart';
-import 'package:tmoto_passenger/src/utils/database_tables.dart';
-import 'package:tmoto_passenger/src/utils/network_response.dart';
+import 'package:passenger/src/data/model/passenger.dart';
+import 'package:passenger/src/utils/database_tables.dart';
+import 'package:passenger/src/utils/network_response.dart';
 
 class RegistrationService {
   cloud_firestore.FirebaseFirestore firestore = cloud_firestore.FirebaseFirestore.instance;

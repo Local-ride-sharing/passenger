@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/ride_rating_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/ride/ride_rating_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class RatingAlert extends StatefulWidget {
   final Ride ride;
@@ -88,15 +88,13 @@ class _RatingAlertState extends State<RatingAlert> {
                           widget.ride.comments = commentsController.text.toString();
                           BlocProvider.of<RideRatingCubit>(context).submit(widget.ride);
                         },
-                        child: Text("Try again".toUpperCase(),
-                            style: TextStyles.title(context: context, color: theme.errorColor)),
+                        child:
+                            Text("Try again".toUpperCase(), style: TextStyles.title(context: context, color: theme.errorColor)),
                       );
                     } else if (state is RideRatingNetworking) {
                       return ElevatedButton(
                         onPressed: () {},
-                        child: Center(
-                            child: CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation(Colors.blue))),
+                        child: Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.blue))),
                       );
                     } else if (state is RideRatingSuccess) {
                       return ElevatedButton(

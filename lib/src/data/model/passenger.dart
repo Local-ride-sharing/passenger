@@ -1,4 +1,4 @@
-import 'package:tmoto_passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/enums.dart';
 
 class Passenger {
   late String reference;
@@ -10,8 +10,7 @@ class Passenger {
   late bool isActive;
   late String? token;
 
-  Passenger(
-      this.reference, this.name, this.gender, this.dob, this.phone, this.profilePicture, this.token, this.isActive);
+  Passenger(this.reference, this.name, this.gender, this.dob, this.phone, this.profilePicture, this.token, this.isActive);
 
   Map<String, dynamic> get toMap => {
         "reference": reference,

@@ -1,8 +1,8 @@
 import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tmoto_passenger/src/data/model/fare.dart';
-import 'package:tmoto_passenger/src/data/service/service_fare.dart';
+import 'package:passenger/src/data/model/fare.dart';
+import 'package:passenger/src/data/service/service_fare.dart';
 
 class FareRepository {
   late FareService _service;
@@ -12,6 +12,5 @@ class FareRepository {
     _service = FareService();
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> get monitorFares =>
-      _service.monitorFares;
+  Stream<QuerySnapshot<Map<String, dynamic>>> get monitorFares => _service.monitorFares;
 }

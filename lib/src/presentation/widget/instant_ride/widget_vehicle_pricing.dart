@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/data/model/direction.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
-import 'package:tmoto_passenger/src/presentation/shimmer/shimmer_icon.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/data/model/direction.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/presentation/shimmer/shimmer_icon.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class VehiclePricing extends StatelessWidget {
   final Vehicle vehicle;
@@ -62,20 +62,27 @@ class VehiclePricing extends StatelessWidget {
                         placeholderBuilder: (_) => ShimmerIcon(32, 32),
                       ),
                     ),
-                    Text(vehicle.enName, style: TextStyles.caption(context: context, color: selected ? Colors.white60 : theme.hintColor).copyWith(fontSize: 10)),
+                    Text(vehicle.enName,
+                        style: TextStyles.caption(context: context, color: selected ? Colors.white60 : theme.hintColor)
+                            .copyWith(fontSize: 10)),
                     const SizedBox(height: 8),
                     Text(
                       "৳ ${(vehicle.baseFare + (vehicle.perKmFare * direction.distance) + (vehicle.perMinuteFare * direction.duration)).ceilToDouble().toInt().toString()}",
-                      style: TextStyles.subHeadline(context: context, color: selected ? Colors.white : theme.textColor).copyWith(fontSize: 20),
+                      style: TextStyles.subHeadline(context: context, color: selected ? Colors.white : theme.textColor)
+                          .copyWith(fontSize: 20),
                     ),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text("${direction.duration} min", style: TextStyles.caption(context: context, color: selected ? Colors.white60 : theme.hintColor).copyWith(fontSize: 10)),
+                        Text("${direction.duration} min",
+                            style: TextStyles.caption(context: context, color: selected ? Colors.white60 : theme.hintColor)
+                                .copyWith(fontSize: 10)),
                         const SizedBox(width: 4),
                         Icon(Icons.circle, color: selected ? Colors.white60 : theme.shadowColor, size: 4),
                         const SizedBox(width: 4),
-                        Text("${direction.distance.toStringAsFixed(2)} km", style: TextStyles.caption(context: context, color: selected ? Colors.white60 : theme.hintColor).copyWith(fontSize: 10)),
+                        Text("${direction.distance.toStringAsFixed(2)} km",
+                            style: TextStyles.caption(context: context, color: selected ? Colors.white60 : theme.hintColor)
+                                .copyWith(fontSize: 10)),
                       ],
                     ),
                   ],

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
-import 'package:tmoto_passenger/src/data/repository/repository_login.dart';
+import 'package:passenger/src/data/repository/repository_login.dart';
 
 part 'verify_otp_state.dart';
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
-import 'package:tmoto_passenger/src/presentation/shimmer/shimmer_icon.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/presentation/shimmer/shimmer_icon.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class VehicleDropdownSelector extends StatelessWidget {
   final Vehicle? value;
@@ -24,8 +24,7 @@ class VehicleDropdownSelector extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: themeProvider.backgroundColor,
             automaticallyImplyLeading: true,
-            title: Text("Select a vehicle",
-                style: TextStyles.subHeadline(context: context, color: themeProvider.primaryColor)),
+            title: Text("Select a vehicle", style: TextStyles.subHeadline(context: context, color: themeProvider.primaryColor)),
             elevation: 0,
           ),
           body: ListView.builder(
@@ -57,17 +56,11 @@ class VehicleDropdownSelector extends StatelessWidget {
                 title: Text((item.enName).trim(),
                     style: TextStyles.body(
                       context: context,
-                      color: value?.reference == item.reference
-                          ? themeProvider.primaryColor
-                          : themeProvider.textColor,
+                      color: value?.reference == item.reference ? themeProvider.primaryColor : themeProvider.textColor,
                     )),
                 trailing: Icon(
-                  value?.reference == item.reference
-                      ? Icons.check_box_rounded
-                      : Icons.check_box_outline_blank_rounded,
-                  color: value?.reference == item.reference
-                      ? themeProvider.primaryColor
-                      : themeProvider.textColor,
+                  value?.reference == item.reference ? Icons.check_box_rounded : Icons.check_box_outline_blank_rounded,
+                  color: value?.reference == item.reference ? themeProvider.primaryColor : themeProvider.textColor,
                 ),
                 dense: false,
                 visualDensity: VisualDensity.comfortable,

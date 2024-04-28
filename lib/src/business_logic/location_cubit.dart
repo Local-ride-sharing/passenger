@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:location/location.dart';
-import 'package:tmoto_passenger/src/data/model/current_location.dart';
+import 'package:passenger/src/data/model/current_location.dart';
 
 class LocationCubit extends Cubit<CurrentLocation> {
   LocationCubit() : super(CurrentLocation(latitude: 23.012965, longitude: 91.4002359, heading: 0));

@@ -1,8 +1,8 @@
 import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tmoto_passenger/src/data/model/my_trips.dart';
-import 'package:tmoto_passenger/src/data/service/service_my_trips.dart';
+import 'package:passenger/src/data/model/my_trips.dart';
+import 'package:passenger/src/data/service/service_my_trips.dart';
 
 class MyTripsRepository {
   late MyTripsService _service;

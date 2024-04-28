@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/cancel_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/ride/cancel_ride_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class RideAlert extends StatefulWidget {
   final Ride ride;
@@ -32,8 +32,7 @@ class _RideAlertState extends State<RideAlert> {
               SizedBox(
                 height: 16,
               ),
-              Text("Do you want to cancel the ride?",
-                  style: TextStyles.body(context: context, color: theme.textColor)),
+              Text("Do you want to cancel the ride?", style: TextStyles.body(context: context, color: theme.textColor)),
               SizedBox(
                 height: 24,
               ),
@@ -45,22 +44,18 @@ class _RideAlertState extends State<RideAlert> {
                     children: [
                       TextButton(
                         style: TextButton.styleFrom(
-                            primary: theme.errorColor,
-                            side: BorderSide(color: theme.errorColor, width: 1)),
-                        child: Text("cancel".toUpperCase(),
-                            style: TextStyles.body(context: context, color: theme.errorColor)),
+                            backgroundColor: theme.errorColor, side: BorderSide(color: theme.errorColor, width: 1)),
+                        child: Text("cancel".toUpperCase(), style: TextStyles.body(context: context, color: theme.errorColor)),
                         onPressed: () async {
                           widget.ride.isCanceled = true;
                           BlocProvider.of<CancelRideCubit>(context).cancelRide(widget.ride);
-                          await Navigator.of(context)
-                              .pushNamedAndRemoveUntil(AppRouter.dashboard, (route) => false);
+                          await Navigator.of(context).pushNamedAndRemoveUntil(AppRouter.dashboard, (route) => false);
                         },
                       ),
                       SizedBox(width: 8),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: theme.errorColor,
-                            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8)),
+                            backgroundColor: theme.errorColor, padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8)),
                         child: Text("continue".toUpperCase(),
                             style: TextStyles.body(context: context, color: theme.backgroundColor)),
                         onPressed: () async {

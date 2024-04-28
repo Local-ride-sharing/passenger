@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/repository/repository_driver.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/repository/repository_driver.dart';
 
 part 'find_single_driver_state.dart';
 

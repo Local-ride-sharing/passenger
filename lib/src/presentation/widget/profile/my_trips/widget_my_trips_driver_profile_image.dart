@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/driver/find_single_driver_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/presentation/shimmer/shimmer_icon.dart';
+import 'package:passenger/src/business_logic/driver/find_single_driver_cubit.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/presentation/shimmer/shimmer_icon.dart';
 
 class DriverProfilePic extends StatefulWidget {
   final Ride ride;
@@ -20,8 +20,7 @@ class _DriverProfilePicState extends State<DriverProfilePic> {
   void initState() {
     super.initState();
     Future.delayed(Duration(milliseconds: 1), () {
-      BlocProvider.of<FindSingleDriverCubit>(context)
-          .findDriver(context, widget.ride.driverReference ?? "");
+      BlocProvider.of<FindSingleDriverCubit>(context).findDriver(context, widget.ride.driverReference ?? "");
     });
   }
 

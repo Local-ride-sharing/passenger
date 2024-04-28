@@ -1,5 +1,5 @@
-import 'package:tmoto_passenger/src/data/model/address.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
+import 'package:passenger/src/data/model/address.dart';
+import 'package:passenger/src/utils/enums.dart';
 
 class SavedAddress {
   late String reference;
@@ -9,8 +9,7 @@ class SavedAddress {
   late double latitude;
   late double longitude;
 
-  SavedAddress(this.reference, this.passengerReference, this.addressType, this.label, this.latitude,
-      this.longitude);
+  SavedAddress(this.reference, this.passengerReference, this.addressType, this.label, this.latitude, this.longitude);
 
   Map<String, dynamic> get toMap => {
         "passengerReference": passengerReference,

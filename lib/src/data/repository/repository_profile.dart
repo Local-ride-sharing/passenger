@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tmoto_passenger/src/data/service/service_profile.dart';
+import 'package:passenger/src/data/service/service_profile.dart';
 
 class ProfileRepository {
   late ProfileService _service;

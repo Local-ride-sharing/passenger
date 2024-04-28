@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -24,9 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
           backgroundColor: theme.backgroundColor,
           body: Stack(
             children: [
-              Center(
-                  child:
-                      Image.asset("images/logo.png", width: 144, height: 144, fit: BoxFit.contain)),
+              Center(child: Image.asset("images/logo.png", width: 144, height: 144, fit: BoxFit.contain)),
               Positioned(
                 bottom: 16,
                 right: 16,
@@ -56,12 +54,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           fillColor: theme.secondaryColor,
                           isDense: true,
                           labelText: "Phone number *",
-                          labelStyle:
-                              TextStyles.caption(context: context, color: theme.primaryColor),
+                          labelStyle: TextStyles.caption(context: context, color: theme.primaryColor),
                           hintText: "ex- 01XXXXXXXXX",
                           hintStyle: TextStyles.body(context: context, color: theme.hintColor),
-                          errorStyle: TextStyles.caption(context: context, color: theme.errorColor)
-                              .copyWith(fontSize: 9, height: 1),
+                          errorStyle:
+                              TextStyles.caption(context: context, color: theme.errorColor).copyWith(fontSize: 9, height: 1),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: theme.primaryColor, width: 2),
                             borderRadius: BorderRadius.circular(16),
@@ -88,12 +85,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: ElevatedButton(
                           onPressed: () {
                             if (_formKey.currentState?.validate() ?? false) {
-                              Navigator.of(context).pushNamed(AppRouter.otp,
-                                  arguments: "+88${_phoneNumberController.text}");
+                              Navigator.of(context).pushNamed(AppRouter.otp, arguments: "+88${_phoneNumberController.text}");
                             }
                           },
-                          child: Text("Login".toUpperCase(),
-                              style: TextStyles.title(context: context, color: theme.textColor)),
+                          child: Text("Login".toUpperCase(), style: TextStyles.title(context: context, color: theme.textColor)),
                         ),
                       ),
                     ],

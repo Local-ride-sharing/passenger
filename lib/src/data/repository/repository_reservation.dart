@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tmoto_passenger/src/data/model/reservation.dart';
-import 'package:tmoto_passenger/src/data/service/service_reservation.dart';
-import 'package:tmoto_passenger/src/utils/network_response.dart';
+import 'package:passenger/src/data/model/reservation.dart';
+import 'package:passenger/src/data/service/service_reservation.dart';
+import 'package:passenger/src/utils/network_response.dart';
 
 class ReservationRepository {
   late ReservationService _service;

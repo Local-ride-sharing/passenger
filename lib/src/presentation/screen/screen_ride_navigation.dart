@@ -3,21 +3,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/driver/single_driver_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/location_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/single_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/current_location.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_vehicle.dart';
-import 'package:tmoto_passenger/src/presentation/widget/find_driver/widget_ride_information.dart';
-import 'package:tmoto_passenger/src/presentation/widget/widget_back_button.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/enums.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/driver/single_driver_cubit.dart';
+import 'package:passenger/src/business_logic/location_cubit.dart';
+import 'package:passenger/src/business_logic/ride/single_ride_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/current_location.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/data/provider/provider_vehicle.dart';
+import 'package:passenger/src/presentation/widget/find_driver/widget_ride_information.dart';
+import 'package:passenger/src/presentation/widget/widget_back_button.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/enums.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class RideNavigationScreen extends StatefulWidget {
   final String reference;
@@ -47,17 +47,14 @@ class _RideNavigationScreenState extends State<RideNavigationScreen> {
     currentLocation = BlocProvider.of<LocationCubit>(context).state;
     BlocProvider.of<SingleRideCubit>(context).findRide(widget.reference);
     try {
-      BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(64, 64)), 'images/pickup.png')
-          .then((d) {
+      BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(64, 64)), 'images/pickup.png').then((d) {
         pickupMarkerIcon = d;
       });
     } catch (error) {
       pickupMarkerIcon = null;
     }
     try {
-      BitmapDescriptor.fromAssetImage(
-              ImageConfiguration(size: Size(64, 64)), 'images/destination.png')
-          .then((d) {
+      BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size(64, 64)), 'images/destination.png').then((d) {
         destinationMarkerIcon = d;
       });
     } catch (error) {
@@ -82,9 +79,7 @@ class _RideNavigationScreenState extends State<RideNavigationScreen> {
 
         if (lastTheme != state.value) {
           lastTheme = state.value;
-          DefaultAssetBundle.of(context)
-              .loadString('assets/map-${theme.isDark ? "dark" : "light"}.json')
-              .then((string) {
+          DefaultAssetBundle.of(context).loadString('assets/map-${theme.isDark ? "dark" : "light"}.json').then((string) {
             this.mapStyle = string;
             if (mapController != null) {
               setState(() {
@@ -98,14 +93,13 @@ class _RideNavigationScreenState extends State<RideNavigationScreen> {
             listener: (_, state) {
               if (state is SingleRideSuccess) {
                 final Ride ride = state.data;
-                BlocProvider.of<SingleDriverCubit>(context)
-                    .monitorSingleDriver(context, ride.driverReference ?? "");
+                BlocProvider.of<SingleDriverCubit>(context).monitorSingleDriver(context, ride.driverReference ?? "");
 
                 final Vehicle vehicle = vehicleProvider.get(ride.vehicleReference)!;
                 final String vehicleName = vehicle.enName.split(" ").first.toLowerCase();
                 try {
-                  BitmapDescriptor.fromAssetImage(ImageConfiguration(size: Size.fromHeight(92)),
-                          'images/$vehicleName-marker.png')
+                  BitmapDescriptor.fromAssetImage(
+                          ImageConfiguration(size: Size.fromHeight(92)), 'images/$vehicleName-marker.png')
                       .then((d) {
                     setState(() {
                       vehicleIcon = d;
@@ -138,8 +132,7 @@ class _RideNavigationScreenState extends State<RideNavigationScreen> {
                 });
 
                 if (state.data.rideCurrentStatus == RideCurrentStatus.finished) {
-                  Navigator.of(context)
-                      .pushReplacementNamed(AppRouter.finishRide, arguments: state.data.reference);
+                  Navigator.of(context).pushReplacementNamed(AppRouter.finishRide, arguments: state.data.reference);
                 }
               }
             },
@@ -165,8 +158,7 @@ class _RideNavigationScreenState extends State<RideNavigationScreen> {
                               if (mapController != null) {
                                 mapController?.animateCamera(CameraUpdate.newCameraPosition(
                                   CameraPosition(
-                                    target:
-                                        LatLng(driver.location.latitude, driver.location.longitude),
+                                    target: LatLng(driver.location.latitude, driver.location.longitude),
                                     zoom: 18.5,
                                     bearing: driver.location.heading,
                                   ),
@@ -200,8 +192,7 @@ class _RideNavigationScreenState extends State<RideNavigationScreen> {
                                 setState(() {
                                   mapController?.animateCamera(CameraUpdate.newCameraPosition(
                                     CameraPosition(
-                                      target: LatLng(
-                                          driver.location.latitude, driver.location.longitude),
+                                      target: LatLng(driver.location.latitude, driver.location.longitude),
                                       zoom: 18.5,
                                       bearing: driver.location.heading,
                                     ),
@@ -216,15 +207,12 @@ class _RideNavigationScreenState extends State<RideNavigationScreen> {
                                 ),
                                 Marker(
                                   markerId: MarkerId(ride.destination.label),
-                                  position:
-                                      LatLng(ride.destination.latitude, ride.destination.longitude),
+                                  position: LatLng(ride.destination.latitude, ride.destination.longitude),
                                   icon: destinationMarkerIcon ?? BitmapDescriptor.defaultMarker,
                                 ),
                                 Marker(
-                                  markerId:
-                                      MarkerId(DateTime.now().millisecondsSinceEpoch.toString()),
-                                  position:
-                                      LatLng(driver.location.latitude, driver.location.longitude),
+                                  markerId: MarkerId(DateTime.now().millisecondsSinceEpoch.toString()),
+                                  position: LatLng(driver.location.latitude, driver.location.longitude),
                                   anchor: Offset(0.5, 0.5),
                                   icon: vehicleIcon ?? BitmapDescriptor.defaultMarker,
                                 ),
@@ -232,10 +220,8 @@ class _RideNavigationScreenState extends State<RideNavigationScreen> {
                             );
                           } else {
                             return GoogleMap(
-                              initialCameraPosition: CameraPosition(
-                                  target:
-                                      LatLng(currentLocation.latitude, currentLocation.longitude),
-                                  zoom: 16),
+                              initialCameraPosition:
+                                  CameraPosition(target: LatLng(currentLocation.latitude, currentLocation.longitude), zoom: 16),
                               mapType: MapType.normal,
                               indoorViewEnabled: false,
                               onMapCreated: mapCreated,
@@ -262,9 +248,8 @@ class _RideNavigationScreenState extends State<RideNavigationScreen> {
                       child: Container(
                         margin: EdgeInsets.symmetric(horizontal: 16),
                         alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: theme.errorColor.withOpacity(.06)),
+                        decoration:
+                            BoxDecoration(borderRadius: BorderRadius.circular(16), color: theme.errorColor.withOpacity(.06)),
                         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                         child: Text("Driver will start the ride please wait...",
                             style: TextStyles.caption(context: context, color: theme.textColor)),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmoto_passenger/src/business_logic/driver/single_driver_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/ride/cancel_ride_cubit.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/driver.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/utils/app_router.dart';
-import 'package:tmoto_passenger/src/utils/helper.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/driver/single_driver_cubit.dart';
+import 'package:passenger/src/business_logic/ride/cancel_ride_cubit.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/driver.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/utils/app_router.dart';
+import 'package:passenger/src/utils/helper.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class LastActiveRide extends StatelessWidget {
   final Ride ride;
@@ -45,11 +45,9 @@ class LastActiveRide extends StatelessWidget {
                         Navigator.of(context).pushNamed(AppRouter.findDriver, arguments: ride);
                       } else {
                         if (ride.startAt == null) {
-                          Navigator.of(context).pushNamed(AppRouter.driverArrivalTracking,
-                              arguments: ride.reference);
+                          Navigator.of(context).pushNamed(AppRouter.driverArrivalTracking, arguments: ride.reference);
                         } else {
-                          Navigator.of(context)
-                              .pushNamed(AppRouter.rideNavigation, arguments: ride.reference);
+                          Navigator.of(context).pushNamed(AppRouter.rideNavigation, arguments: ride.reference);
                         }
                       }
                     },
@@ -72,8 +70,7 @@ class LastActiveRide extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: Text(
                               "৳ ${ride.fare}",
-                              style:
-                                  TextStyles.subTitle(context: context, color: theme.accentColor),
+                              style: TextStyles.subTitle(context: context, color: theme.accentColor),
                             ),
                           ),
                         ),
@@ -96,16 +93,13 @@ class LastActiveRide extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text("${ride.duration} min",
-                                  style:
-                                      TextStyles.caption(context: context, color: theme.hintColor)
-                                          .copyWith(fontSize: 10)),
+                                  style: TextStyles.caption(context: context, color: theme.hintColor).copyWith(fontSize: 10)),
                               SizedBox(width: 8),
                               Icon(Icons.circle, color: theme.hintColor, size: 8),
                               SizedBox(width: 8),
                               Text(
                                 "${ride.distance.toStringAsFixed(1)} km",
-                                style: TextStyles.caption(context: context, color: theme.hintColor)
-                                    .copyWith(fontSize: 10),
+                                style: TextStyles.caption(context: context, color: theme.hintColor).copyWith(fontSize: 10),
                               ),
                             ],
                           ),
@@ -128,8 +122,7 @@ class LastActiveRide extends StatelessWidget {
                                   if (state is CancelRideError) {
                                     return Icon(Icons.error);
                                   } else if (state is CancelRideNetworking) {
-                                    return Center(
-                                        child: CircularProgressIndicator(color: theme.errorColor));
+                                    return Center(child: CircularProgressIndicator(color: theme.errorColor));
                                   } else if (state is CancelRideSuccess) {
                                     return Icon(Icons.done);
                                   } else {
@@ -140,18 +133,14 @@ class LastActiveRide extends StatelessWidget {
                                       contentPadding: EdgeInsets.zero,
                                       trailing: TextButton(
                                         style: TextButton.styleFrom(
-                                            primary: theme.errorColor,
                                             backgroundColor: theme.errorColor.withOpacity(.07),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(16))),
+                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
                                         onPressed: () {
-                                          BlocProvider.of<CancelRideCubit>(context)
-                                              .cancelRide(ride);
+                                          BlocProvider.of<CancelRideCubit>(context).cancelRide(ride);
                                         },
                                         child: Text(
                                           "Cancel ride",
-                                          style: TextStyles.caption(
-                                              context: context, color: theme.errorColor),
+                                          style: TextStyles.caption(context: context, color: theme.errorColor),
                                         ),
                                       ),
                                     );

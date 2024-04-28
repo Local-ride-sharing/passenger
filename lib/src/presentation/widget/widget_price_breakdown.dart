@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:tmoto_passenger/src/business_logic/theme_cubit.dart';
-import 'package:tmoto_passenger/src/data/model/ride.dart';
-import 'package:tmoto_passenger/src/data/model/vehicle.dart';
-import 'package:tmoto_passenger/src/data/provider/provider_vehicle.dart';
-import 'package:tmoto_passenger/src/utils/text_styles.dart';
-import 'package:tmoto_passenger/src/utils/theme_helper.dart';
+import 'package:passenger/src/business_logic/theme_cubit.dart';
+import 'package:passenger/src/data/model/ride.dart';
+import 'package:passenger/src/data/model/vehicle.dart';
+import 'package:passenger/src/data/provider/provider_vehicle.dart';
+import 'package:passenger/src/utils/text_styles.dart';
+import 'package:passenger/src/utils/theme_helper.dart';
 
 class PriceBreakdownWidget extends StatefulWidget {
   final Ride ride;
@@ -59,7 +59,8 @@ class _PriceBreakdownWidgetState extends State<PriceBreakdownWidget> {
                 subtitle: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("${widget.ride.distance.toStringAsFixed(1)} km", style: TextStyles.caption(context: context, color: theme.hintColor)),
+                    Text("${widget.ride.distance.toStringAsFixed(1)} km",
+                        style: TextStyles.caption(context: context, color: theme.hintColor)),
                     SizedBox(width: 4),
                     Icon(Icons.circle, size: 9, color: theme.hintColor),
                     SizedBox(width: 4),
@@ -79,7 +80,8 @@ class _PriceBreakdownWidgetState extends State<PriceBreakdownWidget> {
                 subtitle: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("${widget.ride.duration.toStringAsFixed(1)} min", style: TextStyles.caption(context: context, color: theme.hintColor)),
+                    Text("${widget.ride.duration.toStringAsFixed(1)} min",
+                        style: TextStyles.caption(context: context, color: theme.hintColor)),
                     SizedBox(width: 4),
                     Icon(Icons.circle, size: 9, color: theme.hintColor),
                     SizedBox(width: 4),
