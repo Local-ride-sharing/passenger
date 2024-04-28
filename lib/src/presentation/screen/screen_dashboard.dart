@@ -178,7 +178,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 TextStyles.body(context: context, color: Colors.white60).copyWith(fontWeight: FontWeight.bold),
                           ),
                           subtitle: Text(
-                            """We want to make that dream happen.\nValue your time,time will value you.\nRide T-Moto,Save time.""",
+                            """We want to make that dream happen.\nValue your time,time will value you.\nRide Local ride,Save time.""",
                             textAlign: TextAlign.left,
                             maxLines: 4,
                             style: TextStyles.caption(context: context, color: Colors.white54),

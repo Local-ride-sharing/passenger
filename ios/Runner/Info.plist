@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>T-Moto</string>
+	<string>Local ride</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>T-Moto</string>
+	<string>Local ride</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -38,7 +38,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Enable T-Moto to access your camera roll to upload your profile picture and save ones you've taken with the app</string>
+	<string>Enable Local ride to access your camera roll to upload your profile picture and save ones you've taken with the app</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>Allow flutter devtools to connect and  debug your app</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

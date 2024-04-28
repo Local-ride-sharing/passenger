@@ -24,9 +24,9 @@ double maxLongitude(double longitude, int radius) {
   return longitude + (PER_METER_COORDINATE_FACTOR * radius);
 }
 
-const String channelId = 't-moto';
-const String channelName = 'T-Moto';
-const String channelDescription = 'This channel is used for T-Moto notifications.';
+const String channelId = 'Local ride';
+const String channelName = 'Local ride';
+const String channelDescription = 'This channel is used for Local ride notifications.';
 const String notificationIcon = 'launcher';
 const String notificationSound = 'notification';
 /*

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tmotobd.passenger">
+    package="xyz.localride.passenger">
 
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -8,7 +8,7 @@
     <uses-sdk android:minSdkVersion="21" />
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label="T-Moto"
+        android:label="Local ride"
         android:usesCleartextTraffic="true">
 
         <activity

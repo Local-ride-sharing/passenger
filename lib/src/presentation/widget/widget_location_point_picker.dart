@@ -178,7 +178,7 @@ class _LocationPointPickerState extends State<LocationPointPicker> {
                                       child: Align(
                                         alignment: Alignment.center,
                                         child: Image.asset(
-                                          "images/t-moto_text_logo.png",
+                                          "images/Local ride_text_logo.png",
                                           height: 36,
                                         ),
                                       ),

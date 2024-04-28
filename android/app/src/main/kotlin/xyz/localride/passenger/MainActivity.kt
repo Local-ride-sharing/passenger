@@ -1,4 +1,4 @@
-package com.tmotobd.passenger.passenger
+package xyz.localride.passenger
 
 import io.flutter.embedding.android.FlutterActivity
 

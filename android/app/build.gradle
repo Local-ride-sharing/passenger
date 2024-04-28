@@ -40,7 +40,7 @@ android {
 
     defaultConfig {
 
-        applicationId "com.tmotobd.passenger"
+        applicationId "xyz.localride.passenger"
         minSdkVersion 23
         targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
