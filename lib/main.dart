@@ -18,10 +18,15 @@ import 'package:passenger/src/presentation/screen/screen_on_board.dart';
 import 'package:passenger/src/utils/app_router.dart';
 import 'package:passenger/src/utils/theme_helper.dart';
 
+import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseAppCheck.instance.activate();
+  await Firebase.initializeApp(
+   options: DefaultFirebaseOptions.currentPlatform,
+ );
   // final storage = await HydratedStorage.build(storageDirectory: await getApplicationDocumentsDirectory());
   final AppRouter router = AppRouter();
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

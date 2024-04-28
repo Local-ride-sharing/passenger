@@ -47,7 +47,6 @@ class PointRidePricingWidget extends StatelessWidget {
                     fit: BoxFit.cover,
                     width: 36,
                     height: 36,
-                    cacheColorFilter: true,
                     excludeFromSemantics: true,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     placeholderBuilder: (_) =>

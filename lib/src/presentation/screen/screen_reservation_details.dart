@@ -74,7 +74,6 @@ class _ReservationDetailsScreenState extends State<ReservationDetailsScreen> {
                             fit: BoxFit.contain,
                             width: 84,
                             height: 84,
-                            cacheColorFilter: true,
                             excludeFromSemantics: true,
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             placeholderBuilder: (_) =>

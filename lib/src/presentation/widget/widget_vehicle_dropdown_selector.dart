@@ -47,7 +47,6 @@ class VehicleDropdownSelector extends StatelessWidget {
                     fit: BoxFit.contain,
                     width: 36,
                     height: 36,
-                    cacheColorFilter: true,
                     excludeFromSemantics: true,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     placeholderBuilder: (_) => ShimmerIcon(36, 36),

@@ -1,129 +1,26 @@
 {
   "project_info": {
-    "project_number": "161840280870",
-    "project_id": "t-moto-data-server",
-    "storage_bucket": "t-moto-data-server.appspot.com"
+    "project_number": "1011211959880",
+    "project_id": "local-ride-sharing",
+    "storage_bucket": "local-ride-sharing.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:161840280870:android:709518a6e2afa59e243de7",
+        "mobilesdk_app_id": "1:1011211959880:android:1db94f85505887eafe227d",
         "android_client_info": {
-          "package_name": "com.tmotobd.driver"
+          "package_name": "xyz.localride.passenger"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "161840280870-g49unocv47drasja6ngjicsmtrjinn9q.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tmotobd.driver",
-            "certificate_hash": "f80813753e15508ac8e6c9665eedfa95856ffa17"
-          }
-        },
-        {
-          "client_id": "161840280870-oa1mqsa3c70h1k9luc3flr2eh2e1v1r1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tmotobd.driver",
-            "certificate_hash": "b729c49c15e9797666303cb01a401b81ae0628cb"
-          }
-        },
-        {
-          "client_id": "161840280870-tmge28kdre6rh118hib1sbegg0l5irnm.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tmotobd.driver",
-            "certificate_hash": "797accb0caf2e7074a8238de19a77b40165289d2"
-          }
-        },
-        {
-          "client_id": "161840280870-uhhkohon9kqbkjtoviju4oqpr7esf24o.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tmotobd.driver",
-            "certificate_hash": "ca710d76d1a3b0445996ff231b3214873d977fd5"
-          }
-        },
-        {
-          "client_id": "161840280870-an0mn8n35qkk1km56pfu48ccopfm3h3t.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBywtDKS5c8UC32niXd1i4WPA4U4s88roc"
+          "current_key": "AIzaSyARfrqEYCmjNruJw_9CBsuPeyPi2mJjYz4"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "161840280870-an0mn8n35qkk1km56pfu48ccopfm3h3t.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:161840280870:android:47ebe07b8d1f6dc3243de7",
-        "android_client_info": {
-          "package_name": "com.tmotobd.passenger"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "161840280870-44iubsbrvei0dclodn1sklnoq6i4q2th.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tmotobd.passenger",
-            "certificate_hash": "a4bedac83b4de2e5ef6e9b105717079330414ecb"
-          }
-        },
-        {
-          "client_id": "161840280870-4qohams9mtfil363agehjes8ho105hpm.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tmotobd.passenger",
-            "certificate_hash": "f80813753e15508ac8e6c9665eedfa95856ffa17"
-          }
-        },
-        {
-          "client_id": "161840280870-hqt1bt5poiougm9ajbr69j11en0d0eef.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tmotobd.passenger",
-            "certificate_hash": "c944c3d669c134207a6e0190c2f81304a450dd4f"
-          }
-        },
-        {
-          "client_id": "161840280870-p0molta5gtjsu1j08fpc2bg4rg6dipu1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.tmotobd.passenger",
-            "certificate_hash": "b729c49c15e9797666303cb01a401b81ae0628cb"
-          }
-        },
-        {
-          "client_id": "161840280870-an0mn8n35qkk1km56pfu48ccopfm3h3t.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBywtDKS5c8UC32niXd1i4WPA4U4s88roc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "161840280870-an0mn8n35qkk1km56pfu48ccopfm3h3t.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

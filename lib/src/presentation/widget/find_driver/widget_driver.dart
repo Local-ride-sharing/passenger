@@ -13,7 +13,7 @@ import 'package:passenger/src/utils/app_router.dart';
 import 'package:passenger/src/utils/helper.dart';
 import 'package:passenger/src/utils/text_styles.dart';
 import 'package:passenger/src/utils/theme_helper.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class FindDriverCurrentAssignedDriver extends StatelessWidget {
   final Driver driver;
@@ -74,7 +74,7 @@ class FindDriverCurrentAssignedDriver extends StatelessWidget {
                     visualDensity: VisualDensity.compact,
                     icon: Icon(Icons.call, color: theme.iconColor),
                     onPressed: () {
-                      launch("tel:${driver.phone}");
+                      launchUrlString("tel:${driver.phone}");
                     },
                   ),
                   contentPadding: EdgeInsets.zero,
