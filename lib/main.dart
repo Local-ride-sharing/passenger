@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:passenger/src/business_logic/location_cubit.dart';
@@ -21,12 +22,13 @@ import 'package:passenger/src/utils/theme_helper.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await FirebaseAppCheck.instance.activate();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Firebase.initializeApp(
-   options: DefaultFirebaseOptions.currentPlatform,
- );
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseAppCheck.instance.activate();
+
   // final storage = await HydratedStorage.build(storageDirectory: await getApplicationDocumentsDirectory());
   final AppRouter router = AppRouter();
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -65,6 +67,7 @@ class MyApp extends StatelessWidget {
     return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, state) {
         final theme = ThemeHelper(state.value);
+        FlutterNativeSplash.remove();
         return MaterialApp(
           title: 'Passenger',
           debugShowCheckedModeBanner: false,

@@ -6,54 +6,53 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
+  animated_widgets: ^1.1.0
+  cached_network_image: ^3.2.0
+  cloud_firestore: ^4.15.8
+  firebase_app_check: ^0.2.1+17
+  firebase_auth: ^4.17.8
+  firebase_core: ^2.27.0
+  firebase_messaging: ^14.7.19
+  firebase_storage: ^11.6.9
   flutter:
     sdk: flutter
-  cloud_firestore: ^4.15.8
-  firebase_core: ^2.27.0
-  url_launcher:
-  firebase_auth: ^4.17.8
-  firebase_storage: ^11.6.9
-  firebase_messaging: ^14.7.19
   flutter_bloc: ^8.0.1
-  hydrated_bloc: ^9.1.5
-  uuid: ^4.4.0
-  firebase_app_check: ^0.2.1+17
-  path_provider: ^2.0.9
-  cached_network_image: ^3.2.0
-  shimmer: ^3.0.0
-  google_fonts: ^4.0.4
-  permission_handler: ^11.3.1
-  intl: ^0.19.0
-  http: ^0.13.4
-  material_design_icons_flutter: ^7.0.7296
-  provider: ^6.0.2
-  flutter_rating_bar:
-  image_picker: ^1.0.8
-  google_maps_flutter: ^2.1.2
-  google_maps_webservice: ^0.0.20-nullsafety.5
-  flutter_polyline_points: ^1.0.0
   flutter_google_places: ^0.3.0
-  image_cropper: ^4.0.1
-  location: ^6.0.1
-  shared_preferences: ^2.0.13
-  animated_widgets: ^1.1.0
-  lottie: ^3.0.0
-  google_geocoding: ^0.2.0
+  flutter_polyline_points: ^1.0.0
+  flutter_rating_bar: null
   flutter_svg: ^2.0.9
   geolocator: ^11.0.0
+  google_fonts: ^4.0.4
+  google_geocoding: ^0.2.0
+  google_maps_flutter: ^2.1.2
+  google_maps_webservice: ^0.0.20-nullsafety.5
+  http: ^0.13.4
+  hydrated_bloc: ^9.1.5
+  image_cropper: ^4.0.1
+  image_picker: ^1.0.8
+  intl: ^0.19.0
+  location: ^6.0.1
+  lottie: ^3.0.0
+  material_design_icons_flutter: ^7.0.7296
+  path_provider: ^2.0.9
+  permission_handler: ^11.3.1
+  provider: ^6.0.2
+  shared_preferences: ^2.0.13
+  shimmer: ^3.0.0
   sliding_up_panel: ^2.0.0+1
+  url_launcher: null
+  uuid: ^4.4.0
 
 #dependency_overrides:
 #  flutter_google_places:
 #    git:
 #      url: https://github.com/hoc081098/flutter_google_places.git
 #      ref: 7b6c2aa2053131142c0e48639823d24f312d00c1
-
 dev_dependencies:
+  change_app_package_name: ^1.1.0
+  flutter_native_splash: ^2.0.5
   flutter_test:
     sdk: flutter
-  flutter_native_splash: ^2.0.5
-  change_app_package_name: ^1.1.0
   platform: ^3.1.0
 
 flutter:
